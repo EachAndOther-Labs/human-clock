@@ -1,0 +1,25 @@
+body{
+	background: #000;
+	margin: 0;
+}
+
+#instafeed{
+	overflow:hidden;
+	zoom:1;
+	width:110%;
+	/*margin:20px auto;*/
+/*	-webkit-transition:width 1s ease-in-out,margin .25s ease-in-out;
+	-moz-transition:width 1s ease-in-out,margin .25s ease-in-out;
+	transition:width 1s ease-in-out,margin .25s ease-in-out;*/
+}
+
+img{
+	float: left;
+	-webkit-animation: slidein .75s forwards;
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes slidein {
+    from { margin-left: -50px; }
+    to   { margin-left: 0 }
+}
