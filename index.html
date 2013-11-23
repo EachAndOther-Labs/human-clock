@@ -12,7 +12,7 @@
   socket.on('instagram', function (data) {
     console.log();
     // socket.emit('my other event', { my: 'data' });
-    document.getElementById("clock").innerHTML+= "<img src='" + data.image + "' />";
+    document.getElementById("clock").innerHTML = "<img src='" + data.image + "' />" + document.getElementById("clock").innerHTML;
   });
 </script>
 
