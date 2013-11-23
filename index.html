@@ -9,6 +9,7 @@
 <script>
   var socket = io.connect('http://human-clock.herokuapp.com');
   console.log("socket.io listening");
+  var maxImages = 30;
 //  var socket = io.connect('http://localhost:5000');
   
   	socket.on('instagram', function (data) {
@@ -16,6 +17,10 @@
 
  	if (!$('#clock img[data-id=' + data.id + "]").length) {
  		$('#clock').prepend('<img src="' + data.image + '" data-id="' + data.id + '" />');
+ 		var totalImages = $('#clock img').length;
+ 		if (totalImages > maxImages) {
+ 			$('#clock img:gt(' + maxImages + ')').remove();​
+  		}
  	} else {
  		console.log("ignore, duplicate.")
  	}
