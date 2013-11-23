@@ -5,14 +5,20 @@
 	<div id="clock"></div>
 
 <script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script>
   var socket = io.connect('http://human-clock.herokuapp.com');
+  console.log("socket.io listening");
 //  var socket = io.connect('http://localhost:5000');
   
-  socket.on('instagram', function (data) {
-    console.log();
-    // socket.emit('my other event', { my: 'data' });
-    document.getElementById("clock").innerHTML = "<img src='" + data.image + "' />" + document.getElementById("clock").innerHTML;
+  	socket.on('instagram', function (data) {
+ 	console.log("receiving socket data");
+
+ 	if (!$('#clock img[data-id=' + data.id + "]").length) {
+ 		$('#clock').prepend('<img src="' + data.image + '" data=id="' + data.id + '" />');
+ 	} else {
+ 		console.log("ignore, duplicate.")
+ 	}
   });
 </script>
 

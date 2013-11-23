@@ -119,8 +119,14 @@ app.post('/clock_callback/1', function(request, response) {
           numDataUpdates = fullJSONData.data.length;
         }
 
+        var updatesArray = [];
+        
         for (var i=0; i<numDataUpdates;i++) {
-          io.sockets.emit('instagram', {image: fullJSONData.data[i].images.low_resolution.url});
+          var update = {
+            image: fullJSONData.data[i].images.low_resolution.url,
+            id: fullJSONData.data[i].id
+          }
+          io.sockets.emit('instagram', update);
         }
 
       });
