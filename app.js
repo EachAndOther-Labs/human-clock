@@ -95,6 +95,9 @@ app.post('/clock_callback/1', function(request, response) {
     for (var i in instagram_updates) {
       console.log(instagram_updates[i]);      
     }
+    
+    var numDataUpdates = instagram_updates.length;
+
     var options = {
       host: 'api.instagram.com',
       port: 443,
@@ -112,14 +115,14 @@ app.post('/clock_callback/1', function(request, response) {
       res.on('end', function(){
         var fullJSONData = JSON.parse(fullData);
 
-        for (var i in fullJSONData.data) {
-//          console.log(fullJSONData.data[i].images.low_resolution.url);
+        if (fullJSONData.data.length < numDataUpdates) {
+          numDataUpdates = fullJSONData.data.length;
+        }
+
+        for (var i=0; i<numDataUpdates;i++) {
           io.sockets.emit('instagram', {image: fullJSONData.data[i].images.low_resolution.url});
         }
 
-
-//        console.log(fullJSONData.data);
-//        console.log("LENGTH: " + fullJSONData.data.length);
       });
     });
 
