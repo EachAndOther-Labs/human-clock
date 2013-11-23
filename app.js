@@ -57,7 +57,9 @@ io.sockets.on('connection', function (socket) {
 
 
 var app = require('express')()
-  , server = require('http').createServer(app)
+  ,  http = require('http')
+  , https = require('https')
+  , server = http.createServer(app)
   , io = require('socket.io').listen(server);
 
 var url = require('url');
@@ -91,9 +93,45 @@ app.get('/clock_callback/1', function(request, response) {
 app.post('/clock_callback/1', function(request, response) {
     var instagram_updates = JSON.parse(request.rawBody);
     for (var i in instagram_updates) {
-      console.log(instagram_updates[i]);
-      io.sockets.emit('instagram', instagram_updates[i]);
+      console.log(instagram_updates[i]);      
     }
+    var options = {
+      host: 'api.instagram.com',
+      port: 443,
+      path: '/v1/tags/London/media/recent?client_id=c8ef24044b394ea0b11dbfd34dbffa45&client_secret=0b321ddbe9864840a0472b4a8a15e380'
+    };
+
+    var req = https.request(options, function(res) {
+      console.log('STATUS: ' + res.statusCode);
+      console.log('HEADERS: ' + JSON.stringify(res.headers));
+      res.setEncoding('utf8');
+      var fullData = "";
+      res.on('data', function (chunk) {
+        fullData += chunk;
+      });
+      res.on('end', function(){
+        var fullJSONData = JSON.parse(fullData);
+
+        for (var i in fullJSONData.data) {
+//          console.log(fullJSONData.data[i].images.low_resolution.url);
+          io.sockets.emit('instagram', {image: fullJSONData.data[i].images.low_resolution.url});
+        }
+
+
+//        console.log(fullJSONData.data);
+//        console.log("LENGTH: " + fullJSONData.data.length);
+      });
+    });
+
+    req.on('error', function(e) {
+      console.log('problem with request: ' + e.message);
+    });
+
+    // write data to request body
+    req.write('data\n');
+    req.write('data\n');
+    req.end();
+
     response.send("ok");
 });
 
