@@ -15,7 +15,7 @@
  	console.log("receiving socket data");
 
  	if (!$('#clock img[data-id=' + data.id + "]").length) {
- 		$('#clock').prepend('<img src="' + data.image + '" data=id="' + data.id + '" />');
+ 		$('#clock').prepend('<img src="' + data.image + '" data-id="' + data.id + '" />');
  	} else {
  		console.log("ignore, duplicate.")
  	}
