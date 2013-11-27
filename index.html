@@ -22,22 +22,24 @@
 
  	if ($('img[data-id=' + data.id + "]").length === 0) {
  		var img = $("<img />").attr('src', data.image).attr('data-id', data.id)
-    		.load(function() {
+    		.load(function(this) {
         	if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
             	console.log('broken image!');
         	} else {
+        		if ($('img[data-id=' + data.id + "]").length === 0) {
             	var totalImages = $('#clock img').length;
-				if (totalImages > maxImages) {
- 				//	$("img:gt(" + maxImages + ")").remove();
- 					var random = Math.round(Math.random()*maxImages);
- 					img.hide();
-					$(".flipper").eq(random).append(img);
-					$(".flipper").eq(random).find('img:last-child').fadeIn();
+					if (totalImages > maxImages) {
+ 					//	$("img:gt(" + maxImages + ")").remove();
+ 						var random = Math.round(Math.random()*maxImages);
+ 						img.hide();
+						$(".flipper").eq(random).append(img);
+						$(".flipper").eq(random).find('img:last-child').fadeIn();
+  					} else {
+  						$('#clock').prepend('<div class="flipper"><img src="' + data.image + '" data-id="' + data.id + ' />"</div>');
+  					}
   				} else {
-  					img.wrap('<div class="flipper"></div>');
-  					$('#clock').prepend(img);
+  					console.log("ignore, duplicate.")
   				}
-
         	}
     	});	
 
