@@ -1,3 +1,11 @@
 .flip {
 	float: left;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #FFF;
+	overflow: hidden;
 }
+
+	.flip img {
+		max-width: 100%;
+	}
