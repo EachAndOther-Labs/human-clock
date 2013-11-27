@@ -56,8 +56,9 @@ io.sockets.on('connection', function (socket) {
 
 
 
-var app = require('express')()
-  ,  http = require('http')
+var express = require('express') 
+  , app = express()
+  , http = require('http')
   , https = require('https')
   , server = http.createServer(app)
   , io = require('socket.io').listen(server);
@@ -145,6 +146,8 @@ app.post('/clock_callback/1', function(request, response) {
 
     response.send("ok");
 });
+
+app.use(express.static(__dirname + '/static'));
 
 io.sockets.on('connection', function (socket) {
     socket.on('instagram', function (data) {
