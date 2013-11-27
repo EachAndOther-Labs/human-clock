@@ -1,8 +1,12 @@
+body {
+	background: #000;
+}
+
 .flip {
 	float: left;
 	width: 200px;
 	height: 200px;
-	border: 1px solid #FFF;
+	border: 1px solid #000;
 	overflow: hidden;
 }
 

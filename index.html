@@ -20,13 +20,23 @@
   socket.on('instagram', function (data) {
  	console.log("receiving socket data");
 
- 	if ($('#clock img[data-id=' + data.id + "]").length === 0) {
- 		var totalImages = $('.flip').length;
- 		var imageHTML = '<div class="flip"><img src="' + data.image + '" data-id="' + data.id + '" /></div>';
- 		$('#clock').prepend(imageHTML);
- 		if (totalImages > maxImages) {
- 			$("img:gt(" + maxImages + ")").remove();
-  		}
+ 	if ($('img[data-id=' + data.id + "]").length === 0) {
+ 		var img = $("<img />").attr('src', 'http://somedomain.com/image.jpg').attr('data-id', data.id)
+    		.load(function() {
+        	if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+            	console.log('broken image!');
+        	} else {
+            	var totalImages = $('#clock img').length;
+
+ 				$('#clock').prepend(img);
+ 				if (totalImages > maxImages) {
+ 					$("img:gt(" + maxImages + ")").remove();
+  				}
+
+        	}
+    	});	
+
+ 		
  	} else {
  		console.log("ignore, duplicate.")
  	}
