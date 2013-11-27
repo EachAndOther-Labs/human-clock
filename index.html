@@ -22,6 +22,7 @@
  	console.log("receiving socket data");
 
  	if ($('#clock img[data-id=' + data.id + "]").length === 0) {
+ 		var totalImages = $('#clock img').length;
  		var imageHTML = '<div class="flip"><img src="' + data.image + '" data-id="' + data.id + '" /></div>';
  		if (totalImages < maxImages) {
  			$('#clock').prepend(imageHTML);
@@ -32,7 +33,6 @@
 				content:imageHTML
 			});
  		}
- 		var totalImages = $('#clock img').length;
  		if (totalImages > maxImages) {
  			$("img:gt(" + maxImages + ")").remove();
   		}
