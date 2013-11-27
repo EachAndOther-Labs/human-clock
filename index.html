@@ -16,13 +16,13 @@
 
   var socket = io.connect('http://human-clock.herokuapp.com');
   console.log("socket.io listening");
-  var maxImages = 30;
+  var maxImages = 5;
   
   socket.on('instagram', function (data) {
  	console.log("receiving socket data");
 
  	if ($('#clock img[data-id=' + data.id + "]").length === 0) {
- 		var totalImages = $('#clock img').length;
+ 		var totalImages = $('.flip').length;
  		var imageHTML = '<div class="flip"><img src="' + data.image + '" data-id="' + data.id + '" /></div>';
  		if (totalImages < maxImages) {
  			$('#clock').prepend(imageHTML);
