@@ -15,7 +15,7 @@
 
   var socket = io.connect('http://human-clock.herokuapp.com');
   console.log("socket.io listening");
-  var maxImages = 30;
+  var maxImages = 8;
   
   socket.on('instagram', function (data) {
  	console.log("receiving socket data");
