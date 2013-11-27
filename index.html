@@ -9,14 +9,13 @@
 <script src="/socket.io/socket.io.js"></script>
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="jquery.flip.min.js"></script>
 
 <script>
 //  var socket = io.connect('http://localhost:5000');
 
   var socket = io.connect('http://human-clock.herokuapp.com');
   console.log("socket.io listening");
-  var maxImages = 5;
+  var maxImages = 30;
   
   socket.on('instagram', function (data) {
  	console.log("receiving socket data");
@@ -24,15 +23,7 @@
  	if ($('#clock img[data-id=' + data.id + "]").length === 0) {
  		var totalImages = $('.flip').length;
  		var imageHTML = '<div class="flip"><img src="' + data.image + '" data-id="' + data.id + '" /></div>';
- 		if (totalImages < maxImages) {
- 			$('#clock').prepend(imageHTML);
- 		} else {
- 			var random = Math.round(Math.random()*maxImages);
-			$(".flip").eq(random).flip({
-				direction:'rl',
-				content:imageHTML
-			});
- 		}
+ 		$('#clock').prepend(imageHTML);
  		if (totalImages > maxImages) {
  			$("img:gt(" + maxImages + ")").remove();
   		}
