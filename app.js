@@ -93,7 +93,7 @@ app.get('/clock_callback/1', function(request, response) {
 app.post('/clock_callback/1', function(request, response) {
     var instagram_updates = JSON.parse(request.rawBody);
     for (var i in instagram_updates) {
-      console.log(instagram_updates[i]);      
+      console.log(instagram_updates[i]);
     }
     
     var numDataUpdates = instagram_updates.length;
@@ -113,20 +113,22 @@ app.post('/clock_callback/1', function(request, response) {
         fullData += chunk;
       });
       res.on('end', function(){
-        var fullJSONData = JSON.parse(fullData);
-
-        if (fullJSONData.data.length < numDataUpdates) {
-          numDataUpdates = fullJSONData.data.length;
-        }
-
-        var updatesArray = [];
-        
-        for (var i=0; i<numDataUpdates;i++) {
-          var update = {
-            image: fullJSONData.data[i].images.low_resolution.url,
-            id: fullJSONData.data[i].id
+        try {
+          var fullJSONData = JSON.parse(fullData);
+          if (fullJSONData.data.length < numDataUpdates) {
+            numDataUpdates = fullJSONData.data.length;
           }
-          io.sockets.emit('instagram', update);
+          var updatesArray = [];
+          for (var i=0; i<numDataUpdates;i++) {
+            var update = {
+              image: fullJSONData.data[i].images.low_resolution.url,
+              id: fullJSONData.data[i].id
+            };
+            io.sockets.emit('instagram', update);
+          }
+
+        } catch(e) {
+
         }
 
       });
