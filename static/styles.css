@@ -8,8 +8,12 @@ body {
 	height: 200px;
 	border: 1px solid #000;
 	overflow: hidden;
+	position: relative;
 }
 
 	.flip img {
-		max-width: 100%;
+		max-width: 200px;
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
