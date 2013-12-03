@@ -2,7 +2,7 @@ body {
 	background: #000;
 }
 
-.flip {
+.flipper {
 	float: left;
 	width: 160px;
 	height: 160px;
@@ -11,10 +11,9 @@ body {
 	position: relative;
 }
 
-	.flip img {
+	.flipper img {
 		max-width: 160px;
 		position: absolute;
 		top: 0;
 		left: 0;
-
 	}
