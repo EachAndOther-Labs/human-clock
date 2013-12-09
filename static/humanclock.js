@@ -71,25 +71,24 @@ HumanClock = {
 
     setupSocket: function() {
         socket.on('instagram', function(data) {
-                console.log("receiving socket data");
+            console.log("receiving socket data");
 
-                if ($('img[data-id=' + data.id + "]").length === 0) {
-                    var img = $("<img />").attr('src', data.image).attr('data-id', data.id)
-                        .load(function() {
-                                if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-                                    console.log('broken image!');
-                                } else {
-                                    $('.row').each(function(index) {
-                                        $this = $(this);
-                                        var rowLength = $this.children().length;
-                                        if (rowLength >= s.cutOffPoint) {
-                                            $this.trigger("fullRow");
-                                        }
-                                    });
-                                } else {
-                                    console.log("ignore, duplicate.")
+            if ($('img[data-id=' + data.id + "]").length === 0) {
+                var img = $("<img />").attr('src', data.image).attr('data-id', data.id)
+                    .load(function() {
+                        if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+                            console.log('broken image!');
+                        } else {
+                            $('.row').each(function(index) {
+                                $this = $(this);
+                                var rowLength = $this.children().length;
+                                if (rowLength >= s.cutOffPoint) {
+                                    $this.trigger("fullRow");
                                 }
-                            }
+                            });
+                        } else {
+                            console.log("ignore, duplicate.");
+                        }
                     });
 
 
@@ -97,20 +96,20 @@ HumanClock = {
                 console.log("ignore, duplicate.")
             }
         });
-},
+    },
 
-init: function() {
-    s = this.settings;
+    init: function() {
+        s = this.settings;
 
-    // Create all the rows and attach listener to check if they're full.
-    for (var i = 0; i < s.numRows; i++) {
-        var $el = $("<div class='row'></div>");
-        s.$clockface.append($el);
-        HumanClock.attachEvent($el);
+        // Create all the rows and attach listener to check if they're full.
+        for (var i = 0; i < s.numRows; i++) {
+            var $el = $("<div class='row'></div>");
+            s.$clockface.append($el);
+            HumanClock.attachEvent($el);
+        }
+        s.$firstChild = $(s.$clockface.children()[0]);
+        setupSocket();
     }
-    s.$firstChild = $(s.$clockface.children()[0]);
-    setupSocket();
-}
 
 }
 
