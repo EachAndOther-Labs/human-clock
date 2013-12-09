@@ -11,47 +11,6 @@ HumanClock = {
         $firstChild: null
     },
 
-    feed: new Instafeed({
-        get: 'tagged',
-        tagName: 'overbeingunder',
-        clientId: 'e967a7f0ff224a6090138cb72b730f3d',
-        limit: '50',
-        links: 'false',
-        sortBy: 'most-recent',
-        mock: 'true',
-        resolution: 'standard_resolution',
-        success: function(object) {
-            var images = s.images;
-            data = null;
-            var data = object.data;
-            for (var obj in data) {
-                HumanClock.settings.images.push(data[obj].images.thumbnail);
-            }
-            var feedTimer = $.timer(function() {
-                if (typeof images[0] != 'undefined') {
-                    HumanClock.renderImages(images[0]);
-                }
-                images.shift();
-            });
-            feedTimer.set({
-                time: 1000,
-                autostart: true
-            });
-        }
-    }),
-
-    renderImages: function(image) {
-        s.$firstChild.prepend('<img src="' + image.url + '" height="' + image.height + '" width="' + image.width + '">');
-
-        $('.row').each(function(index) {
-            $this = $(this);
-            var rowLength = $this.children().length;
-            if (rowLength >= s.cutOffPoint) {
-                $this.trigger("fullRow");
-            }
-        });
-    },
-
     attachEvent: function(el) {
         el.on("fullRow", {
             el: el
