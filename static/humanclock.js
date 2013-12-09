@@ -65,7 +65,7 @@ HumanClock = {
             HumanClock.attachEvent($el);
         }
         s.$firstChild = $(s.$clockface.children()[0]);
-        setupSocket();
+        HumanClock.setupSocket();
     }
 
 }
