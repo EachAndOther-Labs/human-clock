@@ -5,9 +5,9 @@
 app.listen(8111);
 
 function handler (req, res) {
-  
+
   // if (typeof res.query != "undefined") {
-      console.log(req); 
+      console.log(req);
   //}
 
 /*  fs.readFile(__dirname + '/index.html',
@@ -56,7 +56,7 @@ io.sockets.on('connection', function (socket) {
 
 
 
-var express = require('express') 
+var express = require('express')
   , app = express()
   , http = require('http')
   , https = require('https')
@@ -96,7 +96,7 @@ app.post('/clock_callback/1', function(request, response) {
     for (var i in instagram_updates) {
       console.log(instagram_updates[i]);
     }
-    
+
     var numDataUpdates = instagram_updates.length;
 
     var options = {
