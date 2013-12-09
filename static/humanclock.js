@@ -38,6 +38,7 @@ HumanClock = {
                         if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
                             console.log('broken image!');
                         } else {
+                            s.$firstChild.prepend(img);
                             $('.row').each(function(index) {
                                 $this = $(this);
                                 var rowLength = $this.children().length;
