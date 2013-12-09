@@ -29,7 +29,7 @@ HumanClock = {
     },
 
     setupSocket: function() {
-        socket.on('instagram', function(data) {
+        s.socket.on('instagram', function(data) {
             console.log("receiving socket data");
 
             if ($('img[data-id=' + data.id + "]").length === 0) {
