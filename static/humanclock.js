@@ -86,8 +86,6 @@ HumanClock = {
                                     $this.trigger("fullRow");
                                 }
                             });
-                        } else {
-                            console.log("ignore, duplicate.");
                         }
                     });
 
