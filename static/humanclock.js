@@ -4,7 +4,7 @@ HumanClock = {
     settings: {
         images: [],
         imageSize: 150,
-        socket: io.connect('http://human-clock.herokuapp.com');
+        socket: io.connect('http://human-clock.herokuapp.com'),
         numRows: 2,
         cutOffPoint: 11,
         $clockface: $('#clock-face'),
