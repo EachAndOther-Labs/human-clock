@@ -67,7 +67,7 @@ HumanClock = {
         // Create all the rows and attach listener to check if they're full.
         for (var i = 0; i < s.numRows; i++) {
             var $el = $("<div class='row'></div>");
-            $clockface.prepend($el);
+            s.$clockface.prepend($el);
             HumanClock.attachEvent($el);
         }
         s.$textBox = $("<div class='textbox'></div>");
