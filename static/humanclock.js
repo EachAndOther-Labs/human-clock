@@ -8,7 +8,8 @@ HumanClock = {
         numRows: 2,
         cutOffPoint: 11,
         $clockface: $('#clock-face'),
-        $firstChild: null
+        $firstChild: null,
+        $textBox: null
     },
 
     attachEvent: function(el) {
@@ -31,6 +32,7 @@ HumanClock = {
     setupSocket: function() {
         s.socket.on('init', function(data) {
             console.log(data);
+            s.$textbox.append("<p>" + data + "</p>");
         });
         s.socket.on('instagram', function(data) {
             console.log("receiving socket data");
@@ -68,6 +70,8 @@ HumanClock = {
             s.$clockface.append($el);
             HumanClock.attachEvent($el);
         }
+        s.$textBox = $("<div class='textbox'></div>");
+        s.$clockface.append(s.$textbox);
         s.$firstChild = $(s.$clockface.children()[0]);
         HumanClock.setupSocket();
     }
