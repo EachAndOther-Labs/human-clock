@@ -71,7 +71,7 @@ HumanClock = {
             HumanClock.attachEvent($el);
         }
         s.$textBox = $("<div class='textbox'></div>");
-        $(.append(s.$textbox);
+        $('body').append(s.$textbox);
         s.$firstChild = $(s.$clockface.children()[0]);
         HumanClock.setupSocket();
     }
