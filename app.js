@@ -150,6 +150,7 @@ app.post('/clock_callback/1', function(request, response) {
 app.use(express.static(__dirname + '/static'));
 
 io.sockets.on('connection', function (socket) {
+  io.sockets.emit("init", "New York");
     socket.on('instagram', function (data) {
         io.sockets.emit('instagram', data);
     });

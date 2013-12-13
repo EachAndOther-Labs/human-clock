@@ -29,6 +29,9 @@ HumanClock = {
     },
 
     setupSocket: function() {
+        s.socket.on('init', function(data) {
+            console.log(data);
+        }
         s.socket.on('instagram', function(data) {
             console.log("receiving socket data");
 
