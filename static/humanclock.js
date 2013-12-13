@@ -67,11 +67,11 @@ HumanClock = {
         // Create all the rows and attach listener to check if they're full.
         for (var i = 0; i < s.numRows; i++) {
             var $el = $("<div class='row'></div>");
-            s.$clockface.append($el);
+            $('body').prepend($el);
             HumanClock.attachEvent($el);
         }
         s.$textBox = $("<div class='textbox'></div>");
-        s.$clockface.append(s.$textbox);
+        $(.append(s.$textbox);
         s.$firstChild = $(s.$clockface.children()[0]);
         HumanClock.setupSocket();
     }
