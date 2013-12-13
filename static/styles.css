@@ -1,19 +1,46 @@
 body {
-	background: #000;
+    background: #000;
 }
-
 .flipper {
-	float: left;
-	width: 160px;
-	height: 160px;
-	border: 2px solid #000;
-	overflow: hidden;
-	position: relative;
+    float: left;
+    width: 160px;
+    height: 160px;
+    border: 2px solid #000;
+    overflow: hidden;
+    position: relative;
 }
-
-	.flipper img {
-		max-width: 160px;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
+.flipper img {
+    max-width: 160px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.textbox {
+    color: #fff;
+    position: absolute;
+    top: 80%;
+    left: 25%;
+    font-size: 2em;
+}
+row {
+    overflow:hidden;
+    zoom:1;
+    width:130%;
+}
+img {
+    float: left;
+    /*-webkit-animation: slidein .75s forwards;*/
+    -webkit-transform: translateX(15px);
+    -moz-transform: translateX(15px);
+    -o-transform: translateX(15px);
+    transform: translateX(15px);
+}
+/* Safari and Chrome */
+ @-webkit-keyframes slidein {
+    from {
+        margin-left: -50px;
+    }
+    to {
+        margin-left: 0
+    }
+}
