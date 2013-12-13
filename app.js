@@ -64,6 +64,7 @@ var express = require('express')
   , io = require('socket.io').listen(server);
 
 var url = require('url');
+io.set('transports',['xhr-polling']);
 
 var port = process.env.PORT || 5000;
 server.listen(port, function() {
