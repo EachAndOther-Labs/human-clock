@@ -153,5 +153,6 @@ io.sockets.on('connection', function (socket) {
   io.sockets.emit("init", "New York");
     socket.on('instagram', function (data) {
         io.sockets.emit('instagram', data);
+        condole.log(data);
     });
 });
