@@ -129,7 +129,7 @@ app.post('/clock_callback/1', function(request, response) {
           }
 
         } catch(e) {
-
+            console.log("Error parsing JSON data");
         }
 
       });
@@ -153,6 +153,5 @@ io.sockets.on('connection', function (socket) {
   io.sockets.emit("init", "New York");
     socket.on('instagram', function (data) {
         io.sockets.emit('instagram', data);
-        condole.log(data);
     });
 });
