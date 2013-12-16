@@ -32,7 +32,7 @@ HumanClock = {
     setupSocket: function() {
         s.socket.on('init', function(data) {
             console.log(data);
-            if (s.$textBox.val() != data) {
+            if (s.$textBox.find("p").html() != data) {
                 s.$textBox.append("<p>" + data + "</p>");
             }
         });
