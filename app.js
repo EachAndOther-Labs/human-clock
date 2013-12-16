@@ -7,6 +7,10 @@ var express = require('express'),
 
 var url = require('url');
 
+io.configure('development', function() {
+    io.set('transports', ['xhr-polling']);
+});
+
 var port = process.env.PORT || 5000;
 server.listen(port, function() {
     console.log("Listening on " + port);
@@ -45,7 +49,7 @@ app.post('/clock_callback/1', function(request, response) {
 
     var options = {
         host: 'api.instagram.com',
-        port: 80,
+        port: 443,
         path: '/v1/tags/London/media/recent?client_id=c8ef24044b394ea0b11dbfd34dbffa45&client_secret=0b321ddbe9864840a0472b4a8a15e380'
     };
 
