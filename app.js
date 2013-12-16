@@ -7,11 +7,6 @@ var express = require('express'),
 
 var url = require('url');
 
-io.configure(function () {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
-});
-
 var port = process.env.PORT || 5000;
 server.listen(port, function() {
     console.log("Listening on " + port);
