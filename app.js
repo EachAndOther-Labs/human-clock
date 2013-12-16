@@ -7,10 +7,6 @@ var express = require('express'),
 
 var url = require('url');
 
-io.configure('development', function() {
-    io.set('transports', ['xhr-polling']);
-});
-
 var port = process.env.PORT || 5000;
 server.listen(port, function() {
     console.log("Listening on " + port);
@@ -73,6 +69,7 @@ app.post('/clock_callback/1', function(request, response) {
                         image: fullJSONData.data[i].images.low_resolution.url,
                         id: fullJSONData.data[i].id
                     };
+                    console.log(update);
                     io.sockets.emit('instagram', update);
                 }
 
