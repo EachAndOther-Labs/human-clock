@@ -1,6 +1,10 @@
 body {
     background: #000;
 }
+@font-face {
+    font-family: ralewayBold;
+    src: url(Raleway-Bold.otf);
+}
 .flipper {
     float: left;
     width: 160px;
@@ -21,6 +25,7 @@ body {
     top: 80%;
     left: 25%;
     font-size: 2em;
+    font-family: ralewayBold;
 }
 row {
     overflow:hidden;

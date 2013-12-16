@@ -32,7 +32,9 @@ HumanClock = {
     setupSocket: function() {
         s.socket.on('init', function(data) {
             console.log(data);
-            s.$textBox.append("<p>" + data + "</p>");
+            if (s.$textBox.val() != data) {
+                s.$textBox.append("<p>" + data + "</p>");
+            }
         });
         s.socket.on('instagram', function(data) {
             console.log("receiving socket data");
