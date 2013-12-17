@@ -37,7 +37,7 @@ HumanClock = {
         //         s.$textBox.append("<p>" + data + "</p>");
         //     }
         // });
-        s.socket.on(s.Params.tags, function(data) {
+        s.socket.on(s.Params.tag, function(data) {
             console.log("receiving socket data");
 
             if ($('img[data-id="' + data.id + '"]').length === 0) {
