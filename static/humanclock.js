@@ -40,7 +40,7 @@ HumanClock = {
             console.log("receiving socket data");
 
             if ($('img[data-id=' + data.id + "]").length === 0) {
-                var img = $("<img />").attr('src', data.image).attr('data-id', data.id)
+                var img = $("<img />").attr('src', data.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
                     .load(function() {
                         if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
                             console.log('broken image!');
