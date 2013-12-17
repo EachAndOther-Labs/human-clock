@@ -28,11 +28,11 @@ app.get('/', function(req, res) {
 });
 
 app.get('/1', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-
+    res.sendfile(__dirname + '/index.html');
 });
 
 app.get('/1/params', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ tag: "London", timeDiff: "0" }));
 });
 
