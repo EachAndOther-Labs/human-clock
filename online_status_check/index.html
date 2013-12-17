@@ -35,7 +35,7 @@
 			var i = new Image();
 			i.onload = loadHumanClock;
 			i.onerror = checkForInternetWithDelay;
-			i.src = 'http://human-clock.herokuapp.com/static/online.gif?_=' + escape(Date());
+			i.src = 'http://human-clock.herokuapp.com/static/online.gif?_=' + escape(new Date().getTime());
 		}
 
 		checkForInternetWithDelay();
