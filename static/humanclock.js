@@ -4,7 +4,7 @@ HumanClock = {
     settings: {
         images: [],
         imageSize: 150,
-        socket: io.connect(document.URL),
+        socket: io.connect('http://human-clock.herokuapp.com'),
         numRows: 2,
         cutOffPoint: 11,
         $clockface: $('#clock-face'),
@@ -78,6 +78,7 @@ HumanClock = {
         s.$textBox = $(".textbox");
         s.$firstChild = $(s.$clockface.children()[0]);
         var url = s.URL + "/params";
+        console.log(url);
         $.getJSON(url, function(data){
             s.params = data;
         });
