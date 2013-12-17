@@ -3,7 +3,10 @@ var express = require('express'),
     http = require('http'),
     https = require('https'),
     server = http.createServer(app),
-    io = require('socket.io').listen(server);
+    io = require('socket.io').listen(server),
+    clockOneTag = "London",
+    clockTwoTag = "Tokyo",
+    clockThreeTag = "NewYork";
 
 var url = require('url');
 
@@ -23,233 +26,323 @@ app.use(function(req, res, next) {
     });
 });
 
-app.get('/', function(req, res) {
-    res.sendfile(__dirname + '/index.html');
-});
+// app.get('/', function(req, res) {
+//     res.sendfile(__dirname + '/index.html');
+// });
 
-app.get('/1', function(req, res) {
-    res.sendfile(__dirname + '/index.html');
-});
+// app.get('/1', function(req, res) {
+//     res.sendfile(__dirname + '/index.html');
+// });
 
-app.get('/1/params', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ tag: "London", timeDiff: "0" }));
-});
+// app.get('/1/params', function(req, res) {
+//     res.setHeader('Content-Type', 'application/json');
+//     res.end(JSON.stringify({
+//         tag: "London",
+//         timeDiff: "0"
+//     }));
+// });
 
-app.get('/2', function(req, res) {
-    res.sendfile(__dirname + '/index.html');
-});
+// app.get('/2', function(req, res) {
+//     res.sendfile(__dirname + '/index.html');
+// });
 
-app.get('/2/params', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ tag: "Tokyo", timeDiff: "0" }));
-});
+// app.get('/2/params', function(req, res) {
+//     res.setHeader('Content-Type', 'application/json');
+//     res.end(JSON.stringify({
+//         tag: "Tokyo",
+//         timeDiff: "0"
+//     }));
+// });
 
-app.get('/3', function(req, res) {
-    res.sendfile(__dirname + '/index.html');
-});
+// app.get('/3', function(req, res) {
+//     res.sendfile(__dirname + '/index.html');
+// });
 
-app.get('/3/params', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ tag: "NewYork", timeDiff: "0" }));
-});
+// app.get('/3/params', function(req, res) {
+//     res.setHeader('Content-Type', 'application/json');
+//     res.end(JSON.stringify({
+//         tag: "NewYork",
+//         timeDiff: "0"
+//     }));
+// });
 
 
-// For first clock
-app.get('/clock_callback/1', function(request, response) {
-    var url_parts = url.parse(request.url, true);
-    var query = url_parts.query;
-    if (query['hub.verify_token'] == 'update_iq_human_clock') {
-        response.send(query['hub.challenge']);
-    }
-});
+// // For first clock
+// app.get('/clock_callback/1', function(request, response) {
+//     var url_parts = url.parse(request.url, true);
+//     var query = url_parts.query;
+//     if (query['hub.verify_token'] == 'update_iq_human_clock') {
+//         response.send(query['hub.challenge']);
+//     }
+// });
 
-app.post('/clock_callback/1', function(request, response) {
-    var instagram_updates = JSON.parse(request.rawBody);
-    for (var i in instagram_updates) {
-        console.log(instagram_updates[i]);
-    }
+// app.post('/clock_callback/1', function(request, response) {
+//     var instagram_updates = JSON.parse(request.rawBody);
+//     for (var i in instagram_updates) {
+//         console.log(instagram_updates[i]);
+//     }
 
-    var numDataUpdates = instagram_updates.length;
+//     var numDataUpdates = instagram_updates.length;
 
-    var options = {
-        host: 'api.instagram.com',
-        port: 443,
-        path: '/v1/tags/London/media/recent?client_id=c8ef24044b394ea0b11dbfd34dbffa45&client_secret=0b321ddbe9864840a0472b4a8a15e380'
-    };
+//     var options = {
+//         host: 'api.instagram.com',
+//         port: 443,
+//         path: '/v1/tags/London/media/recent?client_id=c8ef24044b394ea0b11dbfd34dbffa45&client_secret=0b321ddbe9864840a0472b4a8a15e380'
+//     };
 
-    var req = https.request(options, function(res) {
-        console.log('STATUS: ' + res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(res.headers));
-        res.setEncoding('utf8');
-        var fullData = "";
-        res.on('data', function(chunk) {
-            fullData += chunk;
-        });
-        res.on('end', function() {
-            try {
-                var fullJSONData = JSON.parse(fullData);
-                if (fullJSONData.data.length < numDataUpdates) {
-                    numDataUpdates = fullJSONData.data.length;
-                }
-                var updatesArray = [];
-                for (var i = 0; i < numDataUpdates; i++) {
-                    var update = {
-                        image: fullJSONData.data[i].images.low_resolution.url,
-                        id: fullJSONData.data[i].id
-                    };
-                    io.sockets.emit('London', update);
-                }
+//     var req = https.request(options, function(res) {
+//         console.log('STATUS: ' + res.statusCode);
+//         console.log('HEADERS: ' + JSON.stringify(res.headers));
+//         res.setEncoding('utf8');
+//         var fullData = "";
+//         res.on('data', function(chunk) {
+//             fullData += chunk;
+//         });
+//         res.on('end', function() {
+//             try {
+//                 var fullJSONData = JSON.parse(fullData);
+//                 if (fullJSONData.data.length < numDataUpdates) {
+//                     numDataUpdates = fullJSONData.data.length;
+//                 }
+//                 var updatesArray = [];
+//                 for (var i = 0; i < numDataUpdates; i++) {
+//                     var update = {
+//                         image: fullJSONData.data[i].images.low_resolution.url,
+//                         id: fullJSONData.data[i].id
+//                     };
+//                     io.sockets.emit('London', update);
+//                 }
 
-            } catch (e) {
-                console.log("Error parsing JSON data");
-            }
+//             } catch (e) {
+//                 console.log("Error parsing JSON data");
+//             }
 
-        });
+//         });
+//     });
+
+//     req.on('error', function(e) {
+//         console.log('problem with request: ' + e.message);
+//     });
+
+//     // write data to request body
+//     req.write('data\n');
+//     req.write('data\n');
+//     req.end();
+
+//     response.send("ok");
+// });
+
+// // For second clock
+// app.get('/clock_callback/2', function(request, response) {
+//     var url_parts = url.parse(request.url, true);
+//     var query = url_parts.query;
+//     if (query['hub.verify_token'] == 'update_iq_human_clock') {
+//         response.send(query['hub.challenge']);
+//     }
+// });
+
+// app.post('/clock_callback/2', function(request, response) {
+//     var instagram_updates = JSON.parse(request.rawBody);
+//     for (var i in instagram_updates) {
+//         console.log(instagram_updates[i]);
+//     }
+
+//     var numDataUpdates = instagram_updates.length;
+
+//     var options = {
+//         host: 'api.instagram.com',
+//         port: 443,
+//         path: '/v1/tags/Tokyo/media/recent?client_id=a0ed0db2870642c880df45894478a4bb&client_secret=6496b81e81e34d41bb6b211fbbbc3f91'
+//     };
+
+//     var req = https.request(options, function(res) {
+//         console.log('STATUS: ' + res.statusCode);
+//         console.log('HEADERS: ' + JSON.stringify(res.headers));
+//         res.setEncoding('utf8');
+//         var fullData = "";
+//         res.on('data', function(chunk) {
+//             fullData += chunk;
+//         });
+//         res.on('end', function() {
+//             try {
+//                 var fullJSONData = JSON.parse(fullData);
+//                 if (fullJSONData.data.length < numDataUpdates) {
+//                     numDataUpdates = fullJSONData.data.length;
+//                 }
+//                 var updatesArray = [];
+//                 for (var i = 0; i < numDataUpdates; i++) {
+//                     var update = {
+//                         image: fullJSONData.data[i].images.low_resolution.url,
+//                         id: fullJSONData.data[i].id
+//                     };
+//                     io.sockets.emit('Tokyo', update);
+//                 }
+
+//             } catch (e) {
+//                 console.log("Error parsing JSON data");
+//             }
+
+//         });
+//     });
+
+//     req.on('error', function(e) {
+//         console.log('problem with request: ' + e.message);
+//     });
+
+//     // write data to request body
+//     req.write('data\n');
+//     req.write('data\n');
+//     req.end();
+
+//     response.send("ok");
+// });
+
+// // For third clock
+// app.get('/clock_callback/3', function(request, response) {
+//     var url_parts = url.parse(request.url, true);
+//     var query = url_parts.query;
+//     if (query['hub.verify_token'] == 'update_iq_human_clock') {
+//         response.send(query['hub.challenge']);
+//     }
+// });
+
+// app.post('/clock_callback/3', function(request, response) {
+//     var instagram_updates = JSON.parse(request.rawBody);
+//     for (var i in instagram_updates) {
+//         console.log(instagram_updates[i]);
+//     }
+
+//     var numDataUpdates = instagram_updates.length;
+
+//     var options = {
+//         host: 'api.instagram.com',
+//         port: 443,
+//         path: '/v1/tags/NewYork/media/recent?client_id=fc4dab83cb0942d3aa20591f9c9caa82&client_secret=7f1bcf3d5e364ad4b75dd51f52ed294d'
+//     };
+
+//     var req = https.request(options, function(res) {
+//         console.log('STATUS: ' + res.statusCode);
+//         console.log('HEADERS: ' + JSON.stringify(res.headers));
+//         res.setEncoding('utf8');
+//         var fullData = "";
+//         res.on('data', function(chunk) {
+//             fullData += chunk;
+//         });
+//         res.on('end', function() {
+//             try {
+//                 var fullJSONData = JSON.parse(fullData);
+//                 if (fullJSONData.data.length < numDataUpdates) {
+//                     numDataUpdates = fullJSONData.data.length;
+//                 }
+//                 var updatesArray = [];
+//                 for (var i = 0; i < numDataUpdates; i++) {
+//                     var update = {
+//                         image: fullJSONData.data[i].images.low_resolution.url,
+//                         id: fullJSONData.data[i].id
+//                     };
+//                     io.sockets.emit('NewYork', update);
+//                 }
+
+//             } catch (e) {
+//                 console.log("Error parsing JSON data");
+//             }
+
+//         });
+//     });
+
+//     req.on('error', function(e) {
+//         console.log('problem with request: ' + e.message);
+//     });
+
+//     // write data to request body
+//     req.write('data\n');
+//     req.write('data\n');
+//     req.end();
+
+//     response.send("ok");
+// });
+
+function setupInstagramCallbacks(tag, index, timeZone) {
+    app.get('/' + index, function(req, res) {
+        res.sendfile(__dirname + '/index.html');
     });
 
-    req.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
+    app.get('/' + index + '/params', function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({
+            tag: tag,
+            timeDiff: timeZone
+        }));
     });
 
-    // write data to request body
-    req.write('data\n');
-    req.write('data\n');
-    req.end();
-
-    response.send("ok");
-});
-
-// For second clock
-app.get('/clock_callback/2', function(request, response) {
-    var url_parts = url.parse(request.url, true);
-    var query = url_parts.query;
-    if (query['hub.verify_token'] == 'update_iq_human_clock') {
-        response.send(query['hub.challenge']);
-    }
-});
-
-app.post('/clock_callback/2', function(request, response) {
-    var instagram_updates = JSON.parse(request.rawBody);
-    for (var i in instagram_updates) {
-        console.log(instagram_updates[i]);
-    }
-
-    var numDataUpdates = instagram_updates.length;
-
-    var options = {
-        host: 'api.instagram.com',
-        port: 443,
-        path: '/v1/tags/Tokyo/media/recent?client_id=a0ed0db2870642c880df45894478a4bb&client_secret=6496b81e81e34d41bb6b211fbbbc3f91'
-    };
-
-    var req = https.request(options, function(res) {
-        console.log('STATUS: ' + res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(res.headers));
-        res.setEncoding('utf8');
-        var fullData = "";
-        res.on('data', function(chunk) {
-            fullData += chunk;
-        });
-        res.on('end', function() {
-            try {
-                var fullJSONData = JSON.parse(fullData);
-                if (fullJSONData.data.length < numDataUpdates) {
-                    numDataUpdates = fullJSONData.data.length;
-                }
-                var updatesArray = [];
-                for (var i = 0; i < numDataUpdates; i++) {
-                    var update = {
-                        image: fullJSONData.data[i].images.low_resolution.url,
-                        id: fullJSONData.data[i].id
-                    };
-                    io.sockets.emit('Tokyo', update);
-                }
-
-            } catch (e) {
-                console.log("Error parsing JSON data");
-            }
-
-        });
+    app.get('/clock_callback/' + index, function(request, response) {
+        var url_parts = url.parse(request.url, true);
+        var query = url_parts.query;
+        if (query['hub.verify_token'] == 'update_iq_human_clock') {
+            response.send(query['hub.challenge']);
+        }
     });
 
-    req.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
-    });
+    app.post('/clock_callback/' + index, function(request, response) {
+        var instagram_updates = JSON.parse(request.rawBody);
+        for (var i in instagram_updates) {
+            console.log(instagram_updates[i]);
+        }
 
-    // write data to request body
-    req.write('data\n');
-    req.write('data\n');
-    req.end();
+        var numDataUpdates = instagram_updates.length;
 
-    response.send("ok");
-});
+        var options = {
+            host: 'api.instagram.com',
+            port: 443,
+            path: '/v1/tags/' + tag + '/media/recent?client_id=c8ef24044b394ea0b11dbfd34dbffa45&client_secret=0b321ddbe9864840a0472b4a8a15e380'
+        };
 
-// For third clock
-app.get('/clock_callback/3', function(request, response) {
-    var url_parts = url.parse(request.url, true);
-    var query = url_parts.query;
-    if (query['hub.verify_token'] == 'update_iq_human_clock') {
-        response.send(query['hub.challenge']);
-    }
-});
+        var req = https.request(options, function(res) {
+            console.log('STATUS: ' + res.statusCode);
+            console.log('HEADERS: ' + JSON.stringify(res.headers));
+            res.setEncoding('utf8');
+            var fullData = "";
+            res.on('data', function(chunk) {
+                fullData += chunk;
+            });
+            res.on('end', function() {
+                try {
+                    var fullJSONData = JSON.parse(fullData);
+                    if (fullJSONData.data.length < numDataUpdates) {
+                        numDataUpdates = fullJSONData.data.length;
+                    }
+                    var updatesArray = [];
+                    for (var i = 0; i < numDataUpdates; i++) {
+                        var update = {
+                            image: fullJSONData.data[i].images.low_resolution.url,
+                            id: fullJSONData.data[i].id
+                        };
+                        io.sockets.emit(tag, update);
+                    }
 
-app.post('/clock_callback/3', function(request, response) {
-    var instagram_updates = JSON.parse(request.rawBody);
-    for (var i in instagram_updates) {
-        console.log(instagram_updates[i]);
-    }
-
-    var numDataUpdates = instagram_updates.length;
-
-    var options = {
-        host: 'api.instagram.com',
-        port: 443,
-        path: '/v1/tags/NewYork/media/recent?client_id=fc4dab83cb0942d3aa20591f9c9caa82&client_secret=7f1bcf3d5e364ad4b75dd51f52ed294d'
-    };
-
-    var req = https.request(options, function(res) {
-        console.log('STATUS: ' + res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(res.headers));
-        res.setEncoding('utf8');
-        var fullData = "";
-        res.on('data', function(chunk) {
-            fullData += chunk;
-        });
-        res.on('end', function() {
-            try {
-                var fullJSONData = JSON.parse(fullData);
-                if (fullJSONData.data.length < numDataUpdates) {
-                    numDataUpdates = fullJSONData.data.length;
-                }
-                var updatesArray = [];
-                for (var i = 0; i < numDataUpdates; i++) {
-                    var update = {
-                        image: fullJSONData.data[i].images.low_resolution.url,
-                        id: fullJSONData.data[i].id
-                    };
-                    io.sockets.emit('NewYork', update);
+                } catch (e) {
+                    console.log("Error parsing JSON data");
                 }
 
-            } catch (e) {
-                console.log("Error parsing JSON data");
-            }
-
+            });
         });
+
+        req.on('error', function(e) {
+            console.log('problem with request: ' + e.message);
+        });
+
+        // write data to request body
+        req.write('data\n');
+        req.write('data\n');
+        req.end();
+
+        response.send("ok");
     });
+}
 
-    req.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
-    });
-
-    // write data to request body
-    req.write('data\n');
-    req.write('data\n');
-    req.end();
-
-    response.send("ok");
-});
-
+setupInstagramCallbacks("London", 1, 0);
+setupInstagramCallbacks("Tokyo", 2, 0);
+setupInstagramCallbacks("NewYork", 3, 0);
 app.use(express.static(__dirname + '/static'));
 
 io.sockets.on('connection', function(socket) {
