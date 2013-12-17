@@ -32,12 +32,12 @@ HumanClock = {
     },
 
     setupSocket: function() {
-        s.socket.on('init', function(data) {
-            if (s.$textBox.find("p").html() != data) {
-                s.$textBox.append("<p>" + data + "</p>");
-            }
-        });
-        s.socket.on('instagram', function(data) {
+        // s.socket.on('init', function(data) {
+        //     if (s.$textBox.find("p").html() != data) {
+        //         s.$textBox.append("<p>" + data + "</p>");
+        //     }
+        // });
+        s.socket.on(s.Params.tags, function(data) {
             console.log("receiving socket data");
 
             if ($('img[data-id="' + data.id + '"]').length === 0) {
@@ -67,6 +67,10 @@ HumanClock = {
 
     init: function() {
         s = this.settings;
+        var url = s.URL + "/params";
+        $.getJSON(url, function(data){
+            s.params = data;
+        });
 
         // Create all the rows and attach listener to check if they're full.
         for (var i = 0; i < s.numRows; i++) {
@@ -77,11 +81,8 @@ HumanClock = {
         $("body").prepend("<div class='textbox'></div>");
         s.$textBox = $(".textbox");
         s.$firstChild = $(s.$clockface.children()[0]);
-        var url = s.URL + "/params";
-        console.log(url);
-        $.getJSON(url, function(data){
-            s.params = data;
-        });
+
+        s.$textBox.append("<p>" + s.params.tag + "</p>");
         HumanClock.setupSocket();
     }
 
