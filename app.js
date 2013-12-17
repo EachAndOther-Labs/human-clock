@@ -25,21 +25,21 @@ app.use(function(req, res, next) {
 
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/index.html');
-    io.sockets.emit("init", "London");
 });
 
 app.get('/1', function(req, res) {
     res.sendfile(__dirname + '/index.html');
-    io.sockets.emit("init", "New York");
+    io.sockets.emit("init", "London");
 });
 
 app.get('/2', function(req, res) {
     res.sendfile(__dirname + '/index.html');
-    io.sockets.emit("init", "Tokyo");
+    io.sockets.emit("init", "New York");
 });
 
 app.get('/3', function(req, res) {
     res.sendfile(__dirname + '/index.html');
+    io.sockets.emit("init", "Tokyo");
 });
 
 app.get('/clock_callback/1', function(request, response) {
@@ -84,7 +84,6 @@ app.post('/clock_callback/1', function(request, response) {
                         image: fullJSONData.data[i].images.low_resolution.url,
                         id: fullJSONData.data[i].id
                     };
-                    console.log(update);
                     io.sockets.emit('instagram', update);
                 }
 
