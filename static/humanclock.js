@@ -10,7 +10,8 @@ HumanClock = {
         $clockface: $('#clock-face'),
         $firstChild: null,
         $textBox: null,
-        URL: document.URL
+        URL: document.URL,
+        params: {}
     },
 
     attachEvent: function(el) {
@@ -76,12 +77,11 @@ HumanClock = {
         $("body").prepend("<div class='textbox'></div>");
         s.$textBox = $(".textbox");
         s.$firstChild = $(s.$clockface.children()[0]);
-        // HumanClock.setupSocket();
         var url = s.URL + "/params";
-        console.log(url);
         $.getJSON(url, function(data){
-            console.log(data);
+            s.params = data;
         });
+        HumanClock.setupSocket();
     }
 
 }

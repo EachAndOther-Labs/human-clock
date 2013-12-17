@@ -40,8 +40,18 @@ app.get('/2', function(req, res) {
     res.sendfile(__dirname + '/index.html');
 });
 
+app.get('/2/params', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ tag: "Tokyo", timeDiff: "0" }));
+});
+
 app.get('/3', function(req, res) {
     res.sendfile(__dirname + '/index.html');
+});
+
+app.get('/3/params', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ tag: "New York", timeDiff: "0" }));
 });
 
 app.get('/clock_callback/1', function(request, response) {
