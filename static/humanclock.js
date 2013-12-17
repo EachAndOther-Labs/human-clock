@@ -77,7 +77,9 @@ HumanClock = {
         s.$textBox = $(".textbox");
         s.$firstChild = $(s.$clockface.children()[0]);
         // HumanClock.setupSocket();
-        $.getJSON(s.URL + "/params", function(data){
+        var url = s.URL + "/params";
+        console.log(url);
+        $.getJSON(url, function(data){
             console.log(data);
         });
     }
