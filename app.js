@@ -25,14 +25,17 @@ app.use(function(req, res, next) {
 
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/index.html');
+    io.sockets.emit("init", "London");
 });
 
 app.get('/1', function(req, res) {
     res.sendfile(__dirname + '/index.html');
+    io.sockets.emit("init", "New York");
 });
 
 app.get('/2', function(req, res) {
     res.sendfile(__dirname + '/index.html');
+    io.sockets.emit("init", "Tokyo");
 });
 
 app.get('/3', function(req, res) {
@@ -107,7 +110,6 @@ app.post('/clock_callback/1', function(request, response) {
 app.use(express.static(__dirname + '/static'));
 
 io.sockets.on('connection', function(socket) {
-    io.sockets.emit("init", "London");
     socket.on('instagram', function(data) {
         io.sockets.emit('instagram', data);
     });
