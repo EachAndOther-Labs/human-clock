@@ -27,6 +27,18 @@ app.get('/', function(req, res) {
     res.sendfile(__dirname + '/index.html');
 });
 
+app.get('/1', function(req, res) {
+    res.sendfile(__dirname + '/index.html');
+});
+
+app.get('/2', function(req, res) {
+    res.sendfile(__dirname + '/index.html');
+});
+
+app.get('/3', function(req, res) {
+    res.sendfile(__dirname + '/index.html');
+});
+
 app.get('/clock_callback/1', function(request, response) {
     var url_parts = url.parse(request.url, true);
     var query = url_parts.query;
