@@ -68,22 +68,24 @@ HumanClock = {
     init: function() {
         s = this.settings;
         var url = s.URL + "/params";
-        $.getJSON(url, function(data){
+        $.getJSON(url, function(data) {
             s.params = data;
+
+            // Create all the rows and attach listener to check if they're full.
+            for (var i = 0; i < s.numRows; i++) {
+                var $el = $("<div class='row'></div>");
+                s.$clockface.prepend($el);
+                HumanClock.attachEvent($el);
+            }
+            $("body").prepend("<div class='textbox'></div>");
+            s.$textBox = $(".textbox");
+            s.$firstChild = $(s.$clockface.children()[0]);
+
+            s.$textBox.append("<p>" + s.params.tag + "</p>");
+            HumanClock.setupSocket();
         });
 
-        // Create all the rows and attach listener to check if they're full.
-        for (var i = 0; i < s.numRows; i++) {
-            var $el = $("<div class='row'></div>");
-            s.$clockface.prepend($el);
-            HumanClock.attachEvent($el);
-        }
-        $("body").prepend("<div class='textbox'></div>");
-        s.$textBox = $(".textbox");
-        s.$firstChild = $(s.$clockface.children()[0]);
 
-        s.$textBox.append("<p>" + s.params.tag + "</p>");
-        HumanClock.setupSocket();
     }
 
 }
