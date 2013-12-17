@@ -1,0 +1,3 @@
+This simple HTML/JS file checks for an internet connection by loading an image.
+
+This is to ensure we have internet connectivity before we launch the human clock!
