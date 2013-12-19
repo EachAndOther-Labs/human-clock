@@ -11,7 +11,8 @@ HumanClock = {
         $firstChild: null,
         $textBox: null,
         URL: document.URL,
-        params: {}
+        params: {},
+        $time: $(".time")
     },
 
     attachEvent: function(el) {
@@ -60,6 +61,11 @@ HumanClock = {
         });
     },
 
+    updateTime: function() {
+        date = moment(new Date())
+        $time.html(date.format('dddd, MMMM Do YYYY, h:mm:ss a'));
+    }
+
     init: function() {
         s = this.settings;
         var url = s.URL + "/params";
@@ -77,6 +83,8 @@ HumanClock = {
             s.$firstChild = $(s.$clockface.children()[0]);
 
             s.$textBox.append('<span class="tag">' + s.params.tag + '</p>');
+            updateTime();
+            setInterval(updateTime, 1000);
             HumanClock.setupSocket();
         });
 
