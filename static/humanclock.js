@@ -63,7 +63,7 @@ HumanClock = {
 
     updateTime: function() {
         date = moment(new Date())
-        $time.html(date.format('h:mm:ss a'));
+        s.$time.html(date.format('h:mm:ss a'));
     },
 
     init: function() {
