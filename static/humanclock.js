@@ -82,7 +82,7 @@ HumanClock = {
 
             s.$firstChild = $(s.$clockface.children()[0]);
 
-            s.$textBox.append('<p><span class="tag">' + s.params.tag + '</span><span id="time"></span></p>');
+            s.$textBox.append('<p><span class="tag">' + s.params.tag + '</span><span class="time"></span></p>');
             s.$time = $('.time');
             HumanClock.updateTime();
             setInterval(HumanClock.updateTime, 1000);
