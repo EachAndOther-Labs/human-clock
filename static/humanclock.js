@@ -83,7 +83,7 @@ HumanClock = {
             s.$firstChild = $(s.$clockface.children()[0]);
 
             s.$textBox.append('<p><span class="tag">' + s.params.tag + '</p><span class="time"></span></p>');
-            updateTime();
+            HumanClock.updateTime();
             setInterval(updateTime, 1000);
             HumanClock.setupSocket();
         });
