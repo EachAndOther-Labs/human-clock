@@ -88,10 +88,8 @@ HumanClock = {
                                 }
                             });
                         }
+                        s.images.shift();
                     });
-                s.images.shift();
-
-
             } else {
                 console.log("ignore, duplicate.")
             }
