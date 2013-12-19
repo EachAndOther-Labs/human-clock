@@ -19,6 +19,7 @@ body{
     height: 16px;
     text-transform: uppercase;
     vertical-align: middle;
+    margin-right: 50px;
 }
 .time{
     height: 95px;
