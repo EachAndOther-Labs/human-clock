@@ -61,7 +61,7 @@ HumanClock = {
     },
 
     updateTime: function() {
-        s.$time.html(moment(new Date()).zone("+0500").format("H:mm"));
+        s.$time.html(moment(new Date()).zone(s.params.timeDiff).format("H:mm"));
     },
 
     init: function() {

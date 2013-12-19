@@ -105,9 +105,9 @@ function setupInstagramCallbacks(tag, index, timeZone) {
     });
 }
 
-setupInstagramCallbacks(clockOneTag, 1, 0);
-setupInstagramCallbacks(clockTwoTag, 2, 0);
-setupInstagramCallbacks(clockThreeTag, 3, 0);
+setupInstagramCallbacks(clockOneTag, 1, "-0500");
+setupInstagramCallbacks(clockTwoTag, 2, "+0000");
+setupInstagramCallbacks(clockThreeTag, 3, "+0900");
 
 app.use(express.static(__dirname + '/static'));
 
