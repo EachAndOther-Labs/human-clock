@@ -8,7 +8,7 @@ HumanClock = {
         numRows: 5,
         cutOffPoint: 7,
         $clockface: $('#clock-face'),
-        $time: $('#time'),
+        $time: [],
         $textBox: null,
         URL: document.URL,
         params: {}
@@ -79,6 +79,7 @@ HumanClock = {
             }
             $("body").prepend("<div class='textbox'></div>");
             s.$textBox = $(".textbox");
+            s.$time = $('#time');
             s.$firstChild = $(s.$clockface.children()[0]);
 
             s.$textBox.append('<p><span class="tag">' + s.params.tag + '<span id="time"></span></p>');
