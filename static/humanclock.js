@@ -21,8 +21,6 @@ HumanClock = {
             var $el = $(e.data.el);
             var feedLength = el.children().length;
             var image = $el.children().get(feedLength - 1);
-            console.log($el);
-            console.log(image);
             $(image).remove();
             if (el.is(':last-child')) {
                 image = null;
