@@ -6,7 +6,7 @@ HumanClock = {
         imageSize: 150,
         socket: io.connect('http://human-clock.herokuapp.com'),
         numRows: 2,
-        cutOffPoint: 11,
+        cutOffPoint: 7,
         $clockface: $('#clock-face'),
         $firstChild: null,
         $textBox: null,
@@ -18,9 +18,9 @@ HumanClock = {
         el.on("fullRow", {
             el: el
         }, function(e) {
-            var el = $(e.data.el);
+            var $el = $(e.data.el);
             var feedLength = el.children().length;
-            var image = el.children().get(feedLength - 1);
+            var image = $el.children().get(feedLength - 1);
             image.remove();
             if (el.is(':last-child')) {
                 image = null;
