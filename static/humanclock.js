@@ -84,7 +84,7 @@ HumanClock = {
 
             s.$textBox.append('<p><span class="tag">' + s.params.tag + '</p><span class="time"></span></p>');
             HumanClock.updateTime();
-            setInterval(updateTime, 1000);
+            setInterval(HumanClock.updateTime, 1000);
             HumanClock.setupSocket();
         });
 
