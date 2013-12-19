@@ -8,11 +8,10 @@ HumanClock = {
         numRows: 5,
         cutOffPoint: 7,
         $clockface: $('#clock-face'),
-        $firstChild: null,
+        $time: $('#time'),
         $textBox: null,
         URL: document.URL,
-        params: {},
-        $time: $('.time')
+        params: {}
     },
 
     attachEvent: function(el) {
@@ -82,7 +81,7 @@ HumanClock = {
             s.$textBox = $(".textbox");
             s.$firstChild = $(s.$clockface.children()[0]);
 
-            s.$textBox.append('<p><span class="tag">' + s.params.tag + '<span class="time"></span></p>');
+            s.$textBox.append('<p><span class="tag">' + s.params.tag + '<span id="time"></span></p>');
             HumanClock.updateTime();
             setInterval(HumanClock.updateTime, 1000);
             HumanClock.setupSocket();
