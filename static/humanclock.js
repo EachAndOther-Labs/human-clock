@@ -63,8 +63,8 @@ HumanClock = {
 
     updateTime: function() {
         date = moment(new Date())
-        $time.html(date.format('dddd, MMMM Do YYYY, h:mm:ss a'));
-    }
+        $time.html(date.format('h:mm:ss a'));
+    },
 
     init: function() {
         s = this.settings;
@@ -82,7 +82,7 @@ HumanClock = {
             s.$textBox = $(".textbox");
             s.$firstChild = $(s.$clockface.children()[0]);
 
-            s.$textBox.append('<span class="tag">' + s.params.tag + '</p>');
+            s.$textBox.append('<p><span class="tag">' + s.params.tag + '</p><span class="time"></span></p>');
             updateTime();
             setInterval(updateTime, 1000);
             HumanClock.setupSocket();
