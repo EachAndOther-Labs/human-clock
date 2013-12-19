@@ -15,15 +15,20 @@ body{
     font-weight: bold;
     font-family: ralewayBold;
 }
-.tag{
-    height: 16px;
-    text-transform: uppercase;
+p{
+    height: 110px;
+}
+span{
     vertical-align: middle;
+    display: inline-block;
+}
+.tag{
+    font-size: 16px;
+    text-transform: uppercase;
     margin-right: 50px;
 }
 .time{
-    height: 95px;
-    vertical-align: middle;
+    font-size: 95px;
 }
 .row {
     overflow:hidden;
