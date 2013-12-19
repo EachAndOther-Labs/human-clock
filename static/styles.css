@@ -1,6 +1,10 @@
 body {
     background: #000;
 }
+body{
+    margin-top: 20px;
+}
+
 @font-face {
     font-family: ralewayBold;
     src: url(Raleway-Bold.otf);
