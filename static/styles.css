@@ -10,7 +10,7 @@ body{
 .textbox {
     color: #fff;
     position: absolute;
-    top: 810px;
+    top: 840px;
     left: 140px;
     font-weight: bold;
     font-family: ralewayBold;
@@ -23,7 +23,7 @@ span{
     display: inline-block;
 }
 .tag{
-    font-size: 16px;
+    font-size: 24px;
     text-transform: uppercase;
     margin-right: 50px;
 }
