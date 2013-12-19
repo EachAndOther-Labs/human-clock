@@ -21,6 +21,8 @@ HumanClock = {
             var $el = $(e.data.el);
             var feedLength = el.children().length;
             var image = $el.children().get(feedLength - 1);
+            console.log($el);
+            console.log(image);
             image.remove();
             if (el.is(':last-child')) {
                 image = null;
@@ -33,13 +35,13 @@ HumanClock = {
 
     setupSocket: function() {
         s.socket.on(s.params.tag, function(data) {
-            console.log("receiving socket data");
+            //console.log("receiving socket data");
 
             if ($('img[data-id="' + data.id + '"]').length === 0) {
                 var img = $("<img />").attr('src', data.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
                     .load(function() {
                         if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-                            console.log('broken image!');
+                            //console.log('broken image!');
                         } else {
                             s.$firstChild.prepend(img);
                             $('.row').each(function(index) {
@@ -55,7 +57,7 @@ HumanClock = {
 
             } else {
                 console.log("ignore, duplicate.")
-                console.log(data.id);
+                //console.log(data.id);
             }
         });
     },
