@@ -8,6 +8,7 @@ HumanClock = {
         numRows: 5,
         cutOffPoint: 7,
         $clockface: $('#clock-face'),
+        $firstChild: [],
         $time: [],
         $textBox: null,
         URL: document.URL,
@@ -34,31 +35,39 @@ HumanClock = {
     setupSocket: function() {
         s.socket.on(s.params.tag, function(data) {
             //console.log("receiving socket data");
-
-            if ($('img[data-id="' + data.id + '"]').length === 0) {
-                var img = $("<img />").attr('src', data.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
-                    .load(function() {
-                        if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-                            //console.log('broken image!');
-                        } else {
-                            s.$firstChild.prepend(img);
-                            $('.row').each(function(index) {
-                                $this = $(this);
-                                var rowLength = $this.children().length;
-                                if (rowLength >= s.cutOffPoint) {
-                                    $this.trigger("fullRow");
-                                }
-                            });
-                        }
-                    });
-
-
-            } else {
-                console.log("ignore, duplicate.")
-                //console.log(data.id);
-            }
+            images.push({
+                id: data.id,
+                image: data.id
+            });
         });
+        setInterval(HumanClock.render(), 2000);
     },
+
+    render: function() {
+        var item = iamges[0];
+        if ($('img[data-id="' + item.id + '"]').length === 0) {
+            var img = $("<img />").attr('src', item.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
+                .load(function() {
+                    if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+                        //console.log('broken image!');
+                    } else {
+                        s.$firstChild.prepend(img);
+                        $('.row').each(function(index) {
+                            $this = $(this);
+                            var rowLength = $this.children().length;
+                            if (rowLength >= s.cutOffPoint) {
+                                $this.trigger("fullRow");
+                            }
+                        });
+                    }
+                });
+                images.shift();
+
+
+        } else {
+            console.log("ignore, duplicate.")
+        }
+    }
 
     updateTime: function() {
         s.$time.html(moment(new Date()).zone(s.params.timeDiff).format("H:mm"));
