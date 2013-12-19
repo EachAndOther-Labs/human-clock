@@ -26,8 +26,8 @@ body{
 .textbox {
     color: #fff;
     position: absolute;
-    top: 80%;
-    left: 25%;
+    top: 1000px;
+    left: 300px;
     font-size: 2em;
     font-family: ralewayBold;
 }
