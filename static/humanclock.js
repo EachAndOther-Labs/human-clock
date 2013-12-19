@@ -23,7 +23,7 @@ HumanClock = {
             var image = $el.children().get(feedLength - 1);
             console.log($el);
             console.log(image);
-            image.remove();
+            $(image).remove();
             if (el.is(':last-child')) {
                 image = null;
 
