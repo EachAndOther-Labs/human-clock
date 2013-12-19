@@ -35,7 +35,7 @@ HumanClock = {
     setupSocket: function() {
         s.socket.on(s.params.tag, function(data) {
             //console.log("receiving socket data");
-            images.push({
+            s.images.push({
                 id: data.id,
                 image: data.id
             });
@@ -44,7 +44,7 @@ HumanClock = {
     },
 
     render: function() {
-        var item = iamges[0];
+        var item = s.images[0];
         if ($('img[data-id="' + item.id + '"]').length === 0) {
             var img = $("<img />").attr('src', item.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
                 .load(function() {
@@ -61,7 +61,7 @@ HumanClock = {
                         });
                     }
                 });
-                images.shift();
+                s.images.shift();
 
 
         } else {
