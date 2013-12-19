@@ -68,7 +68,7 @@ HumanClock = {
                 console.log("ignore, duplicate.")
             }
         });
-    }
+    },
 
     render: function() {
         if (s.images.length > 0) {
