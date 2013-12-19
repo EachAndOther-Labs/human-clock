@@ -15,6 +15,15 @@ body{
     font-size: 2em;
     font-family: ralewayBold;
 }
+.tag{
+    height: 16px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+.time{
+    height: 95px;
+    vertical-align: middle;
+}
 .row {
     overflow:hidden;
     zoom:1;

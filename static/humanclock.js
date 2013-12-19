@@ -76,7 +76,7 @@ HumanClock = {
             s.$textBox = $(".textbox");
             s.$firstChild = $(s.$clockface.children()[0]);
 
-            s.$textBox.append("<p>" + s.params.tag + "</p>");
+            s.$textBox.append('<span class="tag">' + s.params.tag + '</p>');
             HumanClock.setupSocket();
         });
 
