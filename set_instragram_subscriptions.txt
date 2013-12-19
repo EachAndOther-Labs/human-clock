@@ -1,28 +1,6 @@
 
 To add new subscription:
 clock1:
-curl -F 'client_id=c8ef24044b394ea0b11dbfd34dbffa45' \
-     -F 'client_secret=0b321ddbe9864840a0472b4a8a15e380' \
-     -F 'object=tag' \
-     -F 'aspect=media' \
-     -F 'object_id=London' \
-     -F 'verify_token=update_iq_human_clock' \
-     -F 'callback_url=http://human-clock.herokuapp.com/clock_callback/1' \
-     https://api.instagram.com/v1/subscriptions/
-
-
-clock2:
-curl -F 'client_id=a0ed0db2870642c880df45894478a4bb' \
-     -F 'client_secret=6496b81e81e34d41bb6b211fbbbc3f91' \
-     -F 'object=tag' \
-     -F 'aspect=media' \
-     -F 'object_id=Tokyo' \
-     -F 'verify_token=update_iq_human_clock' \
-     -F 'callback_url=http://human-clock.herokuapp.com/clock_callback/1' \
-     https://api.instagram.com/v1/subscriptions/
-
-
-clock3:
 curl -F 'client_id=fc4dab83cb0942d3aa20591f9c9caa82' \
      -F 'client_secret=7f1bcf3d5e364ad4b75dd51f52ed294d' \
      -F 'object=tag' \
@@ -32,6 +10,26 @@ curl -F 'client_id=fc4dab83cb0942d3aa20591f9c9caa82' \
      -F 'callback_url=http://human-clock.herokuapp.com/clock_callback/1' \
      https://api.instagram.com/v1/subscriptions/
 
+clock2:
+curl -F 'client_id=c8ef24044b394ea0b11dbfd34dbffa45' \
+     -F 'client_secret=0b321ddbe9864840a0472b4a8a15e380' \
+     -F 'object=tag' \
+     -F 'aspect=media' \
+     -F 'object_id=Dublin' \
+     -F 'verify_token=update_iq_human_clock' \
+     -F 'callback_url=http://human-clock.herokuapp.com/clock_callback/2' \
+     https://api.instagram.com/v1/subscriptions/
+
+
+clock3:
+curl -F 'client_id=a0ed0db2870642c880df45894478a4bb' \
+     -F 'client_secret=6496b81e81e34d41bb6b211fbbbc3f91' \
+     -F 'object=tag' \
+     -F 'aspect=media' \
+     -F 'object_id=Tokyo' \
+     -F 'verify_token=update_iq_human_clock' \
+     -F 'callback_url=http://human-clock.herokuapp.com/clock_callback/3' \
+     https://api.instagram.com/v1/subscriptions/
 
 To list subscriptions (GET):
 clock1:
