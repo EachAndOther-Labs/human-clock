@@ -67,7 +67,7 @@ HumanClock = {
         } else {
             console.log("ignore, duplicate.")
         }
-    }
+    },
 
     updateTime: function() {
         s.$time.html(moment(new Date()).zone(s.params.timeDiff).format("H:mm"));
