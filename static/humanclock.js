@@ -79,10 +79,11 @@ HumanClock = {
             }
             $("body").prepend("<div class='textbox'></div>");
             s.$textBox = $(".textbox");
-            s.$time = $('#time');
+
             s.$firstChild = $(s.$clockface.children()[0]);
 
             s.$textBox.append('<p><span class="tag">' + s.params.tag + '<span id="time"></span></p>');
+            s.$time = $('#time');
             HumanClock.updateTime();
             setInterval(HumanClock.updateTime, 1000);
             HumanClock.setupSocket();
