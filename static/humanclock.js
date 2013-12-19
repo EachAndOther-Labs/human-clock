@@ -44,28 +44,30 @@ HumanClock = {
     },
 
     render: function() {
-        var item = s.images[0];
-        if ($('img[data-id="' + item.id + '"]').length === 0) {
-            var img = $("<img />").attr('src', item.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
-                .load(function() {
-                    if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-                        //console.log('broken image!');
-                    } else {
-                        s.$firstChild.prepend(img);
-                        $('.row').each(function(index) {
-                            $this = $(this);
-                            var rowLength = $this.children().length;
-                            if (rowLength >= s.cutOffPoint) {
-                                $this.trigger("fullRow");
-                            }
-                        });
-                    }
-                });
+        if (s.images.length > 0) {
+            var item = s.images[0];
+            if ($('img[data-id="' + item.id + '"]').length === 0) {
+                var img = $("<img />").attr('src', item.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
+                    .load(function() {
+                        if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+                            //console.log('broken image!');
+                        } else {
+                            s.$firstChild.prepend(img);
+                            $('.row').each(function(index) {
+                                $this = $(this);
+                                var rowLength = $this.children().length;
+                                if (rowLength >= s.cutOffPoint) {
+                                    $this.trigger("fullRow");
+                                }
+                            });
+                        }
+                    });
                 s.images.shift();
 
 
-        } else {
-            console.log("ignore, duplicate.")
+            } else {
+                console.log("ignore, duplicate.")
+            }
         }
     },
 
