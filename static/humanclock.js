@@ -121,7 +121,7 @@ HumanClock = {
             s.$time = $('.time');
             HumanClock.updateTime();
             setInterval(HumanClock.updateTime, 1000);
-            HumanClock.socket();
+            HumanClock.setupSocket();
         });
 
 
