@@ -17,6 +17,7 @@ body{
 }
 p{
     height: 110px;
+    text-align: center;
 }
 span{
     vertical-align: middle;
@@ -33,7 +34,7 @@ span{
 .row {
     overflow:hidden;
     zoom:1;
-    width:130%;
+    width:100%;
 }
 img {
     float: left;
