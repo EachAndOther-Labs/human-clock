@@ -71,6 +71,7 @@ HumanClock = {
     },
 
     render: function() {
+        console.log("rendering");
         if (s.images.length > 0) {
             var item = s.images[0];
             if ($('img[data-id="' + item.id + '"]').length === 0) {
