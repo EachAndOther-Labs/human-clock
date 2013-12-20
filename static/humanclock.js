@@ -40,7 +40,7 @@ HumanClock = {
                 image: data.image
             });
         });
-        setInterval(HumanClock.render(), 2000);
+        setInterval(HumanClock.render, 2000);
     },
 
     socket: function() {
