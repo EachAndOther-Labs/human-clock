@@ -37,7 +37,7 @@ HumanClock = {
             //console.log("receiving socket data");
             s.images.push({
                 id: data.id,
-                image: data.id
+                image: data.image
             });
         });
         setInterval(HumanClock.render(), 2000);
@@ -121,7 +121,7 @@ HumanClock = {
             s.$time = $('.time');
             HumanClock.updateTime();
             setInterval(HumanClock.updateTime, 1000);
-            HumanClock.setupSocket();
+            HumanClock.setupS ocket();
         });
 
 
