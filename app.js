@@ -19,7 +19,7 @@ server.listen(port, function() {
 app.use(function(req, res, next) {
     var data = "";
     req.on('data', function(chunk) {
-        data += chunk
+        data += chunk;
     });
     req.on('end', function() {
         req.rawBody = data;
@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
     });
 });
 
-function setupInstagramCallbacks(tag, index, timeZone) {
+function setupInstagramCallbacks(tag, index, timeZone, clientId, clientSecret) {
     app.get('/' + index, function(req, res) {
         res.sendfile(__dirname + '/index.html');
     });
@@ -59,7 +59,7 @@ function setupInstagramCallbacks(tag, index, timeZone) {
         var options = {
             host: 'api.instagram.com',
             port: 443,
-            path: '/v1/tags/' + tag + '/media/recent?client_id=c8ef24044b394ea0b11dbfd34dbffa45&client_secret=0b321ddbe9864840a0472b4a8a15e380'
+            path: '/v1/tags/' + tag + '/media/recent?client_id=' + clientId + '&client_secret=' + clientSecret
         };
 
         var req = https.request(options, function(res) {
@@ -105,9 +105,9 @@ function setupInstagramCallbacks(tag, index, timeZone) {
     });
 }
 
-setupInstagramCallbacks(clockOneTag, 1, "-0500");
-setupInstagramCallbacks(clockTwoTag, 2, "+0000");
-setupInstagramCallbacks(clockThreeTag, 3, "+0900");
+setupInstagramCallbacks(clockOneTag, 1, "-0500", "33fa122521134670997f80ad7b04b639","0fe1a1a964674448a0077baf6c2c0198");
+setupInstagramCallbacks(clockTwoTag, 2, "+0000", "7cb1b72f7b55411ea16a8f882520e883", "21b56b54344d49cdb78350eedbca9f9e");
+setupInstagramCallbacks(clockThreeTag, 3, "+0900", "a6d5f32b791f41d5bac669fa925145b5", "e7749d11508e4fda88af7e2f24dbe339");
 
 app.use(express.static(__dirname + '/static'));
 

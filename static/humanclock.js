@@ -4,7 +4,8 @@ HumanClock = {
     settings: {
         images: [],
         imageSize: 150,
-        socket: io.connect('http://human-clock.herokuapp.com'),
+        // socket: io.connect('http://human-clock.herokuapp.com'),
+        socket: io.connect('localhost:5000'),
         numRows: 5,
         cutOffPoint: 6,
         $clockface: $('#clock-face'),
@@ -65,13 +66,12 @@ HumanClock = {
 
 
             } else {
-                console.log("ignore, duplicate.")
+                console.log("ignore, duplicate.");
             }
         });
     },
 
     render: function() {
-        console.log("rendering");
         if (s.images.length > 0) {
             var item = s.images[0];
             if ($('img[data-id="' + item.id + '"]').length === 0) {
@@ -92,7 +92,7 @@ HumanClock = {
                         s.images.shift();
                     });
             } else {
-                console.log("ignore, duplicate.")
+                console.log("ignore, duplicate.");
             }
         }
     },
@@ -128,7 +128,7 @@ HumanClock = {
 
     }
 
-}
+};
 
 $(document).ready(function() {
     HumanClock.init();

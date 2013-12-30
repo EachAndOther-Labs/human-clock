@@ -1,8 +1,8 @@
 
 To add new subscription:
 clock1:
-curl -F 'client_id=fc4dab83cb0942d3aa20591f9c9caa82' \
-     -F 'client_secret=7f1bcf3d5e364ad4b75dd51f52ed294d' \
+curl -F 'client_id=33fa122521134670997f80ad7b04b639' \
+     -F 'client_secret=0fe1a1a964674448a0077baf6c2c0198' \
      -F 'object=tag' \
      -F 'aspect=media' \
      -F 'object_id=NewYork' \
@@ -11,8 +11,8 @@ curl -F 'client_id=fc4dab83cb0942d3aa20591f9c9caa82' \
      https://api.instagram.com/v1/subscriptions/
 
 clock2:
-curl -F 'client_id=c8ef24044b394ea0b11dbfd34dbffa45' \
-     -F 'client_secret=0b321ddbe9864840a0472b4a8a15e380' \
+curl -F 'client_id=7cb1b72f7b55411ea16a8f882520e883' \
+     -F 'client_secret=21b56b54344d49cdb78350eedbca9f9e' \
      -F 'object=tag' \
      -F 'aspect=media' \
      -F 'object_id=Dublin' \
@@ -22,8 +22,8 @@ curl -F 'client_id=c8ef24044b394ea0b11dbfd34dbffa45' \
 
 
 clock3:
-curl -F 'client_id=a0ed0db2870642c880df45894478a4bb' \
-     -F 'client_secret=6496b81e81e34d41bb6b211fbbbc3f91' \
+curl -F 'client_id=a6d5f32b791f41d5bac669fa925145b5' \
+     -F 'client_secret=e7749d11508e4fda88af7e2f24dbe339' \
      -F 'object=tag' \
      -F 'aspect=media' \
      -F 'object_id=Tokyo' \
@@ -33,21 +33,21 @@ curl -F 'client_id=a0ed0db2870642c880df45894478a4bb' \
 
 To list subscriptions (GET):
 clock1:
-https://api.instagram.com/v1/subscriptions?client_secret=0b321ddbe9864840a0472b4a8a15e380&client_id=c8ef24044b394ea0b11dbfd34dbffa45
+https://api.instagram.com/v1/subscriptions?client_secret=0fe1a1a964674448a0077baf6c2c0198&client_id=33fa122521134670997f80ad7b04b639
 
 clock2:
-https://api.instagram.com/v1/subscriptions?client_secret=6496b81e81e34d41bb6b211fbbbc3f91&client_id=a0ed0db2870642c880df45894478a4bb
+https://api.instagram.com/v1/subscriptions?client_secret=21b56b54344d49cdb78350eedbca9f9e&client_id=7cb1b72f7b55411ea16a8f882520e883
 
 clock3:
-https://api.instagram.com/v1/subscriptions?client_secret=7f1bcf3d5e364ad4b75dd51f52ed294d&client_id=fc4dab83cb0942d3aa20591f9c9caa82
+https://api.instagram.com/v1/subscriptions?client_secret=e7749d11508e4fda88af7e2f24dbe339&client_id=a6d5f32b791f41d5bac669fa925145b5
 
 
 Delete subscriptions:
 clock1:
-curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=0b321ddbe9864840a0472b4a8a15e380&client_id=c8ef24044b394ea0b11dbfd34dbffa45&id=1
+curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=0fe1a1a964674448a0077baf6c2c0198&client_id=33fa122521134670997f80ad7b04b639&id=1
 
 clock2:
-curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=6496b81e81e34d41bb6b211fbbbc3f91&client_id=a0ed0db2870642c880df45894478a4bb&id=1
+curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=21b56b54344d49cdb78350eedbca9f9e&client_id=7cb1b72f7b55411ea16a8f882520e883&id=1
 
 clock3:
-curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=7f1bcf3d5e364ad4b75dd51f52ed294d&client_id=fc4dab83cb0942d3aa20591f9c9caa82&id=1
+curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=e7749d11508e4fda88af7e2f24dbe339&client_id=a6d5f32b791f41d5bac669fa925145b5&id=1
