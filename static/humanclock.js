@@ -89,11 +89,11 @@ HumanClock = {
                                 }
                             });
                         }
-                        s.images.shift();
                     });
             } else {
                 console.log("ignore, duplicate.");
             }
+            s.images.shift();
         }
     },
 
