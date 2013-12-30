@@ -38,11 +38,16 @@ span{
 }
 img {
     float: left;
+    left: -500px;
     /*-webkit-animation: slidein .75s forwards;*/
-    -webkit-transform: translateX(15px);
+    /*-webkit-transform: translateX(15px);
     -moz-transform: translateX(15px);
     -o-transform: translateX(15px);
-    transform: translateX(15px);
+    transform: translateX(15px);*/
+    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slide 0.5s forwards;
+    animation-delay: 2s;
 }
 /* Safari and Chrome */
  @-webkit-keyframes slidein {
@@ -52,4 +57,12 @@ img {
     to {
         margin-left: 0
     }
+}
+
+@-webkit-keyframes slide {
+    100% { left: 0; }
+}
+
+@keyframes slide {
+    100% { left: 0; }
 }
