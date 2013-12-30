@@ -73,7 +73,6 @@ HumanClock = {
     render: function() {
         if (s.images.length > 0) {
             var item = s.images[0];
-            console.log(item.id);
             if ($('img[data-id="' + item.id + '"]').length === 0) {
                 var img = $("<img />").attr('src', item.image).attr('data-id', item.id).attr('width', 150).attr('height', 150)
                     .load(function() {
