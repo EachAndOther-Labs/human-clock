@@ -38,7 +38,7 @@ span{
 }
 img {
     float: left;
-    left: -500px;
+    left: -100px;
     /*-webkit-animation: slidein .75s forwards;*/
     /*-webkit-transform: translateX(15px);
     -moz-transform: translateX(15px);
