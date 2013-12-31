@@ -88,7 +88,7 @@ HumanClock = {
                                 }
                             });
                         }
-                    });
+                    }).animate({ "left": "+=100px" }, "slow" );
             } else {
                 console.log("ignore, duplicate.");
             }

@@ -44,11 +44,11 @@ img {
     -moz-transform: translateX(15px);
     -o-transform: translateX(15px);
     transform: translateX(15px);*/
-    -webkit-animation: slide 0.5s forwards;
-    animation: slide 0.5s forwards;
+/*    -webkit-animation: slide 0.5s forwards;
+    animation: slide 0.5s forwards;*/
 }
 /* Safari and Chrome */
- @-webkit-keyframes slidein {
+/* @-webkit-keyframes slidein {
     from {
         margin-left: -50px;
     }
@@ -64,3 +64,4 @@ img {
 @keyframes slide {
     100% { left: 0; }
 }
+*/
