@@ -43,42 +43,42 @@ HumanClock = {
         setInterval(HumanClock.render, 1000);
     },
 
-    socket: function() {
-        s.socket.on(s.params.tag, function(data) {
-            if ($('img[data-id="' + data.id + '"]').length === 0) {
-                var $div = $("<div></div>");
-                var img = $("<img />").attr('src', data.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
-                    .load(function() {
-                        if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-                            //console.log('broken image!');
-                        } else {
-                            $div.append(img);
-                            s.$firstChild.prepend($div);
-                            // $('.row').each(function(index) {
-                            //     $this = $(this);
-                            //     var rowLength = $this.children().length;
-                            //     if (rowLength >= s.cutOffPoint) {
-                            //         $this.trigger("fullRow");
-                            //     }
-                            // });
-                            $rows = $('.row');
-                            for (var i = 0; var length = $rows.length; i < length; i++) {
-                                $this = $rows[i];
-                                var rowLength = $this.children().length;
-                                if (rowLength >= s.cutOffPoint) {
-                                    $this.trigger("fullRow");
-                                }
-                            }
-                        }
-                    });
+    // socket: function() {
+    //     s.socket.on(s.params.tag, function(data) {
+    //         if ($('img[data-id="' + data.id + '"]').length === 0) {
+    //             var $div = $("<div></div>");
+    //             var img = $("<img />").attr('src', data.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
+    //                 .load(function() {
+    //                     if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+    //                         //console.log('broken image!');
+    //                     } else {
+    //                         $div.append(img);
+    //                         s.$firstChild.prepend($div);
+    //                         // $('.row').each(function(index) {
+    //                         //     $this = $(this);
+    //                         //     var rowLength = $this.children().length;
+    //                         //     if (rowLength >= s.cutOffPoint) {
+    //                         //         $this.trigger("fullRow");
+    //                         //     }
+    //                         // });
+    //                         $rows = $('.row');
+    //                         for (var i = 0; var length = $rows.length; i < length; i++) {
+    //                             $this = $rows[i];
+    //                             var rowLength = $this.children().length;
+    //                             if (rowLength >= s.cutOffPoint) {
+    //                                 $this.trigger("fullRow");
+    //                             }
+    //                         }
+    //                     }
+    //                 });
 
 
 
-            } else {
-                console.log("ignore, duplicate.");
-            }
-        });
-    },
+    //         } else {
+    //             console.log("ignore, duplicate.");
+    //         }
+    //     });
+    // },
 
     render: function() {
         if (s.images.length > 0) {
