@@ -93,7 +93,7 @@ HumanClock = {
                             $div.append(img);
                             s.$firstChild.prepend($div);
                             var $rows = $('.row');
-                            for (var i = 0; length = $rows.length; i < length; i++) {
+                            for (var i = 0, length = $rows.length; i < length; i++) {
                                 $this = $rows[i];
                                 var rowLength = $this.children().length;
                                 if (rowLength >= s.cutOffPoint) {
