@@ -7,13 +7,17 @@ body{
     font-family: ralewayBold;
     src: url(Raleway-Bold.otf);
 }
+@font-face {
+    font-family: openSans;
+    src: url(OpenSans-Bold.ttf);
+}
 .textbox {
     color: #fff;
     position: absolute;
     top: 855px;
     left: 180px;
     font-weight: bold;
-    font-family: ralewayBold;
+    font-family:openSans;
 }
 p{
     height: 110px;

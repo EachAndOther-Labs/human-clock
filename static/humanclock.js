@@ -46,19 +46,30 @@ HumanClock = {
     socket: function() {
         s.socket.on(s.params.tag, function(data) {
             if ($('img[data-id="' + data.id + '"]').length === 0) {
+                var $div = $("<div></div>");
                 var img = $("<img />").attr('src', data.image).attr('data-id', data.id).attr('width', 150).attr('height', 150)
                     .load(function() {
                         if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
                             //console.log('broken image!');
                         } else {
-                            s.$firstChild.prepend(img);
-                            $('.row').each(function(index) {
-                                $this = $(this);
+                            $div.append(img);
+                            s.$firstChild.prepend($div);
+                            // $('.row').each(function(index) {
+                            //     $this = $(this);
+                            //     var rowLength = $this.children().length;
+                            //     if (rowLength >= s.cutOffPoint) {
+                            //         $this.trigger("fullRow");
+                            //     }
+                            // });
+                            $rows = $('.row');
+                            for (var i = 0;
+                                var length = $rows.length; i < length; i++) {
+                                $this = $rows[i];
                                 var rowLength = $this.children().length;
                                 if (rowLength >= s.cutOffPoint) {
                                     $this.trigger("fullRow");
                                 }
-                            });
+                            }
                         }
                     });
 
@@ -74,21 +85,34 @@ HumanClock = {
         if (s.images.length > 0) {
             var item = s.images[0];
             if ($('img[data-id="' + item.id + '"]').length === 0) {
+                var $div = $("<div></div>");
                 var img = $("<img />").attr('src', item.image).attr('data-id', item.id).attr('width', 150).attr('height', 150)
                     .load(function() {
                         if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
                             //console.log('broken image!');
                         } else {
-                            s.$firstChild.prepend(img);
-                            $('.row').each(function(index) {
-                                $this = $(this);
+                            $div.append(img);
+                            s.$firstChild.prepend($div);
+                            // $('.row').each(function(index) {
+                            //     $this = $(this);
+                            //     var rowLength = $this.children().length;
+                            //     if (rowLength >= s.cutOffPoint) {
+                            //         $this.trigger("fullRow");
+                            //     }
+                            // });
+                            $rows = $('.row');
+                            for (var i = 0;
+                                var length = $rows.length; i < length; i++) {
+                                $this = $rows[i];
                                 var rowLength = $this.children().length;
                                 if (rowLength >= s.cutOffPoint) {
                                     $this.trigger("fullRow");
                                 }
-                            });
+                            }
                         }
-                    }).animate({ "left": "+=100px" }, "slow" );
+                    }).animate({
+                        "left": "+=100px"
+                    }, "slow");
             } else {
                 console.log("ignore, duplicate.");
             }
