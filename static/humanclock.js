@@ -92,21 +92,14 @@ HumanClock = {
                         } else {
                             $div.append(img);
                             s.$firstChild.prepend($div);
-                            $('.row').each(function(index) {
-                                $this = $(this);
+                            var $rows = $('.row');
+                            for (var i = 0; length = $rows.length; i < length; i++) {
+                                $this = $rows[i];
                                 var rowLength = $this.children().length;
                                 if (rowLength >= s.cutOffPoint) {
                                     $this.trigger("fullRow");
                                 }
-                            });
-                            // $rows = $('.row');
-                            // for (var i = 0; var length = $rows.length; i < length; i++) {
-                            //     $this = $rows[i];
-                            //     var rowLength = $this.children().length;
-                            //     if (rowLength >= s.cutOffPoint) {
-                            //         $this.trigger("fullRow");
-                            //     }
-                            // }
+                            }
                         }
                     }).animate({
                         "left": "+=100px"
