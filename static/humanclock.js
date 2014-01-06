@@ -94,16 +94,14 @@ HumanClock = {
                             s.$firstChild.prepend($div);
                             var $rows = $('.row');
                             for (var i = 0, length = $rows.length; i < length; i++) {
-                                $this = $rows[i];
+                                $this = $($rows[i]);
                                 var rowLength = $this.children().length;
                                 if (rowLength >= s.cutOffPoint) {
                                     $this.trigger("fullRow");
                                 }
                             }
                         }
-                    }).animate({
-                        "left": "+=100px"
-                    }, "slow");
+                    });
             } else {
                 console.log("ignore, duplicate.");
             }
