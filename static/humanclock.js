@@ -38,7 +38,7 @@ HumanClock = {
             var stringObj = JSON.stringify(data);
             s.images.unshift(stringObj);
             s.images = _.uniq(s.images);
-            if(s.images >= s.numRows * s.cutOffPoint){
+            if(s.images >= 25252525252525252525252525252525252525252525252525){
                 s.images.pop();
             }
         });
