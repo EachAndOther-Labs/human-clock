@@ -38,6 +38,9 @@ HumanClock = {
             var stringObj = JSON.stringify(data);
             s.images.push(stringObj);
             s.images = _.uniq(s.images);
+            if(s.images >= s.numRows * s.cutOffPoint){
+                s.images.pop();
+            }
         });
         setInterval(HumanClock.render, 1500);
     },
@@ -104,7 +107,7 @@ HumanClock = {
             } else {
                 console.log("ignore, duplicate.");
             }
-            s.images.shift();
+            // s.images.shift();
         }
     },
 
