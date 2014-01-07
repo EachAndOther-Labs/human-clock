@@ -37,7 +37,7 @@ HumanClock = {
             //console.log("receiving socket data");
             var stringObj = JSON.stringify(data);
             s.images.push(stringObj);
-            _.uniq(s.images);
+            s.images = .uniq(s.images);
         });
         setInterval(HumanClock.render, 1500);
     },
