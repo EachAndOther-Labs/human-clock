@@ -36,11 +36,8 @@ HumanClock = {
         s.socket.on(s.params.tag, function(data) {
             //console.log("receiving socket data");
             var stringObj = JSON.stringify(data);
-            s.images.unshift(stringObj);
+            s.images.push(stringObj);
             s.images = _.uniq(s.images);
-            if(s.images >= 25){
-                s.images.pop();
-            }
         });
         setInterval(HumanClock.render, 1500);
     },
@@ -107,7 +104,7 @@ HumanClock = {
             } else {
                 console.log("ignore, duplicate.");
             }
-            // s.images.shift();
+            s.images.shift();
         }
     },
 
