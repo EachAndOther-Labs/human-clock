@@ -36,7 +36,7 @@ HumanClock = {
         s.socket.on(s.params.tag, function(data) {
             //console.log("receiving socket data");
             var stringObj = JSON.stringify(data);
-            s.images.push(stringObj);
+            s.images.unshift(stringObj);
             s.images = _.uniq(s.images);
             if(s.images >= s.numRows * s.cutOffPoint){
                 s.images.pop();
