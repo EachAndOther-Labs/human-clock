@@ -36,7 +36,7 @@ function setupInstagramCallbacks(tag, index, timeZone, clientId, clientSecret) {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({
             tag: tag,
-            timeDiff: timeZone
+            timeZone: timeZone
         }));
     });
 
@@ -105,9 +105,9 @@ function setupInstagramCallbacks(tag, index, timeZone, clientId, clientSecret) {
     });
 }
 
-setupInstagramCallbacks(clockOneTag, 1, "-0500", "33fa122521134670997f80ad7b04b639","0fe1a1a964674448a0077baf6c2c0198");
-setupInstagramCallbacks(clockTwoTag, 2, "+0000", "7cb1b72f7b55411ea16a8f882520e883", "21b56b54344d49cdb78350eedbca9f9e");
-setupInstagramCallbacks(clockThreeTag, 3, "+0900", "a6d5f32b791f41d5bac669fa925145b5", "e7749d11508e4fda88af7e2f24dbe339");
+setupInstagramCallbacks(clockOneTag, 1, "America/New_York", "33fa122521134670997f80ad7b04b639","0fe1a1a964674448a0077baf6c2c0198");
+setupInstagramCallbacks(clockTwoTag, 2, "Europe/Dublin", "7cb1b72f7b55411ea16a8f882520e883", "21b56b54344d49cdb78350eedbca9f9e");
+setupInstagramCallbacks(clockThreeTag, 3, "Asia/Tokyo", "a6d5f32b791f41d5bac669fa925145b5", "e7749d11508e4fda88af7e2f24dbe339");
 
 app.use(express.static(__dirname + '/static'));
 

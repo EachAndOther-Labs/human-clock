@@ -109,7 +109,8 @@ HumanClock = {
     },
 
     updateTime: function() {
-        s.$time.html(moment(new Date()).zone(s.params.timeDiff).format("H:mm"));
+        var localTime = moment().tz(s.params.timeZone).format("H:mm");
+        s.$time.html(localTime);
     },
 
     init: function() {
