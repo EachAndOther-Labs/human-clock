@@ -16,6 +16,6 @@ Clone from github:
 
 `clone git@github.com:iqlabs/human-clock.git`
 
-Install node modules (socket-io and express):
+Install node modules (socket-io and express) from the project root folder:
 
 `npm install`
