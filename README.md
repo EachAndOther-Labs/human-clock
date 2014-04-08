@@ -8,3 +8,14 @@ Using Instagram’s API, the Human Clock takes a feed from a set location and tr
 Constructed from timber, three old monitors and three raspberry pi's (not to mention blood, sweat and tears), the Human Clock adorns the reception to iQ towers.
 
 The Human Clock is a full stack Javascript app using NodeJS Express and Socket-io.
+
+Installation
+============
+
+Clone from github:
+
+`clone git@github.com:iqlabs/human-clock.git`
+
+Install node modules (socket-io and express):
+
+`npm install`
