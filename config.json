@@ -1,0 +1,25 @@
+{
+    "photoTags": [
+        {
+            "tag": "NewYork",
+            "timeZone": "America/New_York",
+            "value": "1",
+            "clientId" : "33fa122521134670997f80ad7b04b639",
+            "clientSecret" : "0fe1a1a964674448a0077baf6c2c0198"
+        },
+        {
+            "tag": "Dublin",
+            "timeZone": "Europe/Dublin",
+            "value": "2",
+            "clientId" : "7cb1b72f7b55411ea16a8f882520e883",
+            "clientSecret" : "21b56b54344d49cdb78350eedbca9f9e"
+        },
+        {
+            "tag": "Tokyo",
+            "timeZone": "Asia/Tokyo",
+            "value": "3",
+            "clientId" : "a6d5f32b791f41d5bac669fa925145b5",
+            "clientSecret" : "e7749d11508e4fda88af7e2f24dbe339"
+        }
+    ]
+}

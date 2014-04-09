@@ -1,13 +1,12 @@
 var express = require('express'),
     app = express(),
+    config = require('./config.json'),
     http = require('http'),
     https = require('https'),
     server = http.createServer(app),
-    io = require('socket.io').listen(server),
-    clockOneTag = "NewYork",
-    clockTwoTag = "Dublin",
-    clockThreeTag = "Tokyo";
+    io = require('socket.io').listen(server);
 
+console.log(config);
 
 var url = require('url');
 
@@ -17,16 +16,37 @@ server.listen(port, function() {
 });
 
 app.use(function(req, res, next) {
+    console.log('line 19:app.use')
     var data = "";
     req.on('data', function(chunk) {
+        console.log(data);
         data += chunk;
     });
     req.on('end', function() {
+        console.log('end:app.use', data);
         req.rawBody = data;
         next();
     });
 });
 
+/**
+ *
+ * Loop through each photo tag and create an instagram callback
+ *
+ */
+config.photoTags.forEach(function(entry) {
+    console.log(entry);
+    setupInstagramCallbacks(entry.tag, entry.value, entry.timeZone, entry.clientId, entry.clientSecret);
+});
+
+/**
+ * Set up Instagram call backs
+ * @param tag
+ * @param index
+ * @param timeZone
+ * @param clientId - provided when you register with Instagram
+ * @param clientSecret - provided when you register with Instagram
+ */
 function setupInstagramCallbacks(tag, index, timeZone, clientId, clientSecret) {
     app.get('/' + index, function(req, res) {
         res.sendfile(__dirname + '/index.html');
@@ -40,6 +60,10 @@ function setupInstagramCallbacks(tag, index, timeZone, clientId, clientSecret) {
         }));
     });
 
+    /**
+     * Instagram will verify our subscription
+     * by executing a get against our callback url
+     */
     app.get('/clock_callback/' + index, function(request, response) {
         var url_parts = url.parse(request.url, true);
         var query = url_parts.query;
@@ -48,6 +72,12 @@ function setupInstagramCallbacks(tag, index, timeZone, clientId, clientSecret) {
         }
     });
 
+    /**
+     * Once subscribed, instagram will post back to this callback url (this url
+     * is provided to instagram when creating a client for the api).
+     *
+     * The call back indicates that there are new photos available for our tag
+     */
     app.post('/clock_callback/' + index, function(request, response) {
         var instagram_updates = JSON.parse(request.rawBody);
         for (var i in instagram_updates) {
@@ -61,7 +91,10 @@ function setupInstagramCallbacks(tag, index, timeZone, clientId, clientSecret) {
             port: 443,
             path: '/v1/tags/' + tag + '/media/recent?client_id=' + clientId + '&client_secret=' + clientSecret
         };
-
+        /**
+         * There are new tags, so execute a call to the Instagram api to return
+         * an array of our new images
+         */
         var req = https.request(options, function(res) {
             console.log('STATUS: ' + res.statusCode);
             console.log('HEADERS: ' + JSON.stringify(res.headers));
@@ -82,6 +115,8 @@ function setupInstagramCallbacks(tag, index, timeZone, clientId, clientSecret) {
                             image: fullJSONData.data[i].images.low_resolution.url,
                             id: fullJSONData.data[i].id
                         };
+                        
+                        // Send our updates to the webapp
                         io.sockets.emit(tag, update);
                     }
 
@@ -104,10 +139,6 @@ function setupInstagramCallbacks(tag, index, timeZone, clientId, clientSecret) {
         response.send("ok");
     });
 }
-
-setupInstagramCallbacks(clockOneTag, 1, "America/New_York", "33fa122521134670997f80ad7b04b639","0fe1a1a964674448a0077baf6c2c0198");
-setupInstagramCallbacks(clockTwoTag, 2, "Europe/Dublin", "7cb1b72f7b55411ea16a8f882520e883", "21b56b54344d49cdb78350eedbca9f9e");
-setupInstagramCallbacks(clockThreeTag, 3, "Asia/Tokyo", "a6d5f32b791f41d5bac669fa925145b5", "e7749d11508e4fda88af7e2f24dbe339");
 
 app.use(express.static(__dirname + '/static'));
 
