@@ -15,14 +15,12 @@ server.listen(port, function() {
 });
 
 app.use(function(req, res, next) {
-    console.log('line 19:app.use')
     var data = "";
     req.on('data', function(chunk) {
         console.log('THIS IS A CHUNK ' +chunk);
         data += chunk;
     });
     req.on('end', function() {
-        console.log('end:app.use', data);
         req.rawBody = data;
         next();
     });
